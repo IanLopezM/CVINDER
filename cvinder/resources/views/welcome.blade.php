@@ -15,121 +15,70 @@
         </style>
 
         <style>
-            body {
-                font-family: 'Nunito', sans-serif;
+            * {
+              box-sizing: border-box;
             }
-            nav {
-  margin: 27px auto 0;
+            html, body, section, div {
+              height: 100%;
+            }
 
-  position: relative;
-  width: 590px;
-  height: 50px;
-  background-color: #34495e;
-  border-radius: 8px;
-  font-size: 0;
-}
-nav a {
-  line-height: 50px;
-  height: 100%;
-  font-size: 15px;
-  display: inline-block;
-  position: relative;
-  z-index: 1;
-  text-decoration: none;
-  text-transform: uppercase;
-  text-align: center;
-  color: white;
-  cursor: pointer;
-}
-nav .animation {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  z-index: 0;
-  transition: all .5s ease 0s;
-  border-radius: 8px;
-}
-a:nth-child(1) {
-  width: 100px;
-}
-a:nth-child(2) {
-  width: 110px;
-}
-a:nth-child(3) {
-  width: 100px;
-}
-a:nth-child(4) {
-  width: 160px;
-}
-a:nth-child(5) {
-  width: 120px;
-}
-nav .start-home, a:nth-child(1):hover~.animation {
-  width: 100px;
-  left: 0;
-  background-color: #1abc9c;
-}
-nav .start-about, a:nth-child(2):hover~.animation {
-  width: 110px;
-  left: 100px;
-  background-color: #e74c3c;
-}
-nav .start-blog, a:nth-child(3):hover~.animation {
-  width: 100px;
-  left: 210px;
-  background-color: #3498db;
-}
-nav .start-portefolio, a:nth-child(4):hover~.animation {
-  width: 160px;
-  left: 310px;
-  background-color: #9b59b6;
-}
-nav .start-contact, a:nth-child(5):hover~.animation {
-  width: 120px;
-  left: 470px;
-  background-color: #e67e22;
-}
+            body { 
+              color: #fff;
+              font-family: sans-serif;
+              font-size: 1.25rem;
+              line-height: 150%;
+              text-align: center;
+              text-shadow: 0 2px 2px #b6701e;
+              font-family: 'Nunito', sans-serif;
+            }
 
-body {
-  font-size: 12px;
-  font-family: sans-serif;
-  background: #2c3e50;
-}
-h1 {
-  text-align: center;
-  margin: 40px 0 40px;
-  text-align: center;
-  font-size: 30px;
-  color: #ecf0f1;
-  text-shadow: 2px 2px 4px #000000;
-  font-family: 'Cherry Swash', cursive;
-}
+            section {
+              width: 100%;
+            }
 
-p {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    color: #ecf0f1;
-    font-family: 'Cherry Swash',cursive;
-    font-size: 16px;
-}
+            article {
+              position: relative;
+              top: 50%;
+              left: 50%;
+              padding: 1rem;
+              text-align: center;
+              transform: translate(-50%, -50%);
+            }
 
-span {
-    color: #2BD6B4;
-}
+            h1 {
+              font-size: 1.75rem;
+              margin: 0 0 0.75rem 0;
+            }
+
+            /* Pattern styles */
+            .left-half {
+              background-color: #ff9e2c;
+              float: left;
+              width: 50%;
+            }
+            .right-half {
+              background-color: #b6701e;
+              float: left;
+              width: 50%;
+            }
         </style>
     </head>
     <body class="antialiased">
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Blog</a>
-            <a href="#">Portefolio</a>
-            <a href="#">Contact</a>
-        <div class="animation start-home"></div>
-        </nav>
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    <section class="container">
+      <div class="left-half">
+        <article>
+          <h1>Left Half</h1>
+          <p>Weekends don't count unless you spend them doing something completely pointless.</p>
+        </article>
+      </div>
+      <div class="right-half">
+        <article>
+          <h1>Right Half</h1>
+          <p>If your knees aren't green by the end of the day, you ought to seriously re-examine your life.</p>
+        </article>
+      </div>
+    </section>
+    <!-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -143,6 +92,6 @@ span {
                     @endauth
                 </div>
             @endif
-        </div>
+        </div> -->
     </body>
 </html>
