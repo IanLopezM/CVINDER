@@ -33,10 +33,10 @@ Route::middleware([
 
 Route::get("/worker", [WorkerController::class, "index"])->name("worker.index");
 Route::get("/worker/profile", [WorkerController::class, "profile"])->name("worker.profile");
-Route::get("/worker/matches", [WorkerController::class, "matches"])->name("worker.matches");
+Route::get("/worker/likes", [WorkerController::class, "likes"])->name("worker.likes");
 
 Route::get("/enterprise", [EnterpriseController::class, "profile"])->name("enterprise.profile");
 
 Route::get("/offer", [OfferController::class, "index"])->name("offer.index");
-Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");
+Route::get("/offer/likes", [OfferController::class, "likes"])->name("offer.likes");
 
