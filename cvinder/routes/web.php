@@ -34,9 +34,12 @@ Route::middleware([
 Route::get("/worker", [WorkerController::class, "index"])->name("worker.index");
 Route::get("/worker/profile", [WorkerController::class, "profile"])->name("worker.profile");
 Route::get("/worker/matches", [WorkerController::class, "matches"])->name("worker.matches");
+Route::get("/worker/form", [WorkerController::class, "form"])->name("worker.form");
 
-Route::get("/enterprise", [EnterpriseController::class, "profile"])->name("enterprise.profile");
+Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->name("enterprise.profile");
+Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");
 
 Route::get("/offer", [OfferController::class, "index"])->name("offer.index");
 Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");
+Route::get("/offer/form", [OfferController::class, "form"])->name("offer.form");
 
