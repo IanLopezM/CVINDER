@@ -28,8 +28,14 @@ class EnterpriseController extends Controller
         //
     }
 
-    public function form() {
+    public function form()
+    {
         return view('enterprise.form');
+    }
+
+    public function profile()
+    {
+        return view('enterprise.profile');
     }
 
     /**
