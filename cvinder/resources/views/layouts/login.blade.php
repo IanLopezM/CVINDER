@@ -18,6 +18,12 @@
       background: linear-gradient(90deg, rgba(51, 213, 162, 1) 0%, rgba(81, 134, 218, 1) 100%);
     }
 
+    h2 {
+      background: linear-gradient(90deg, rgba(51, 213, 162, 1) 0%, rgba(81, 134, 218, 1) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     .wrapper {
       display: flex;
       align-items: center;
@@ -45,7 +51,7 @@
     input[type=button],
     input[type=submit],
     input[type=reset] {
-      background-color: #56baed;
+      background-color: rgba(51, 213, 162, 1);
       border: none;
       color: white;
       padding: 15px 80px;
@@ -69,7 +75,7 @@
     input[type=button]:hover,
     input[type=submit]:hover,
     input[type=reset]:hover {
-      background-color: #39ace7;
+      background-color: rgba(51, 213, 162, 1);
     }
 
     input[type=button]:active,
@@ -121,6 +127,7 @@
   <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Login Form -->
+      <h2 class="my-4 text-5xl font-bold leading-tight">Inicia Sesión</h2>
       <form>
         <input type="text" id="user" class="fadeIn second" name="user" placeholder="Usuari">
         <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contrasenya">
