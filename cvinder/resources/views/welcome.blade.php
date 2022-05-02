@@ -65,12 +65,12 @@
     <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
       <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
         <p class="uppercase tracking-loose w-full">¿Cansado de buscar?</p>
-        <h1 class="my-4 text-5xl font-bold leading-tight">¡Encuentra al amor de tu vida!</h1>
+        <h1 class="my-4 text-5xl font-bold leading-tight">¡Encuentra trabajo en un slide!</h1>
         <p class="leading-normal text-2xl mb-8">¡No es difícil, solo debes de crearte una cuenta y ponerte a buscar!</p>
-        <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear cuenta</button>
+        <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Inicia Sesión</button>
       </div>
       <div class="w-full md:w-3/5 py-6 text-center">
-        <img class="w-full md:w-4/5 z-50" src="https://concepto.de/wp-content/uploads/2016/04/amor-e1591738140747-800x400.jpg">
+        <img class="w-full md:w-4/5 z-50" src="https://fondosmil.com/fondo/70222.png">
       </div>
     </div>
   </div>
@@ -85,7 +85,7 @@
       <div class="flex flex-wrap">
         <div class="w-5/6 sm:w-1/2 p-6">
           <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Con solo deslizar</h3>
-          <p class="text-gray-600 mb-8">Con solo deslizar podrás encontrar a alguien que comparta exactamente los mismos gustos que tú. Puede vivir mucho más cerca de lo que crees.<br><br>
+          <p class="text-gray-600 mb-8">Con solo deslizar podrás encontrar lo que estás buscando. Tanto el trabajo ideal como el trabajador mas aplicado.<br><br>
         </div>
         <div class="w-full sm:w-1/2 p-6">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-full sm:h-64 mx-auto" viewBox="0 0 1177 598.5">
@@ -189,8 +189,8 @@
         </div>
         <div class="w-full sm:w-1/2 p-6 mt-6">
           <div class="align-middle">
-            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Activos a nivel global</h3>
-            <p class="text-gray-600 mb-8">Puede ser que tu amor ahora mismo se encuentre desayunando en Japón o visitando el río Nilo.<br><br>
+            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">Activos a nivel nacional</h3>
+            <p class="text-gray-600 mb-8">Desde Canarias hasta Islas Baleares, tienes opciones de todas las comunidades autonomas.<br><br>
           </div>
         </div>
       </div>
@@ -209,7 +209,7 @@
             <p class="w-full text-gray-600 text-xs md:text-sm px-6">TESTIMONIO</p>
             <div class="w-full font-bold text-xl text-gray-800 px-6">Manuel</div>
             <p class="text-gray-800 text-base px-6 mb-5">
-              Encontré el amor a la vuelta de la esquina, literalmente era mi vecina del bloque de al lado.
+              Encontré trabajo a la vuelta de la esquina, literalmente era el bloque de al lado.
             </p>
           </a>
         </div>
@@ -221,7 +221,7 @@
             <p class="w-full text-gray-600 text-xs md:text-sm px-6">TESTIMONIO</p>
             <div class="w-full font-bold text-xl text-gray-800 px-6">Antonia</div>
             <p class="text-gray-800 text-base px-6 mb-5">
-              Aún no he encontrado el amor, pero no pierdo la esperanza, algun dia lo conseguiré.
+              Aun no he encontrado trabajo, pero es tan cómodo de usar, que me siento realizado.
             </p>
           </a>
         </div>
@@ -231,9 +231,9 @@
         <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
           <a href="#" class="flex flex-wrap no-underline hover:no-underline">
             <p class="w-full text-gray-600 text-xs md:text-sm px-6">TESTIMONIO</p>
-            <div class="w-full font-bold text-xl text-gray-800 px-6">Ayman.</div>
+            <div class="w-full font-bold text-xl text-gray-800 px-6">Ayman</div>
             <p class="text-gray-800 text-base px-6 mb-5">
-              Yo solo entré para ver culos y acabé saliendo con una gotica de Tarragona, las vueltas que da la vida.
+              Yo solo entré para ver donde hacer prácticas, al acabarlas me contrataron.
             </p>
           </a>
         </div>
@@ -257,14 +257,13 @@
             <ul class="w-full text-center text-sm">
               <li class="border-b py-4">50 likes por dia</li>
               <li class="border-b py-4">Inicia conversación con los match</li>
-              <li class="border-b py-4"></li>
-              <li class="border-b py-4"></li>
             </ul>
           </div>
           <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
             <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">0.00 <span class="text-base">por usuario</span></div>
             <div class="flex items-center justify-center">
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta</button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Empresa</button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Trabajador</button>
             </div>
           </div>
         </div>
@@ -277,13 +276,13 @@
               <li class="border-b py-4">200 likes por dia</li>
               <li class="border-b py-4">Inicia conversación con los match</li>
               <li class="border-b py-4">Inicia conversación con algunos de tus likes</li>
-              <li class="border-b py-4"></li>
             </ul>
           </div>
           <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
             <div class="w-full pt-6 text-4xl font-bold text-center">9.99 <span class="text-base">/ por usuario</span></div>
             <div class="flex items-center justify-center">
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta</button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Empresa</button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Trabajador</button>
             </div>
           </div>
         </div>
@@ -301,7 +300,8 @@
           <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
             <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">29.99 <span class="text-base">/ por usuario</span></div>
             <div class="flex items-center justify-center">
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta</button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Empresa</button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Trabajador</button>
             </div>
           </div>
         </div>
@@ -315,7 +315,8 @@
       <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
     </div>
     <h3 class="my-4 text-3xl leading-tight">¡No te lo pienses dos veces!</h3>
-    <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear cuenta</button>
+    <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear cuenta Empresa</button>
+    <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear cuenta Trabajador</button>
   </section>
 
   <script>
