@@ -13,20 +13,116 @@
         .gradient {
             background: linear-gradient(90deg, rgba(51, 213, 162, 1) 0%, rgba(81, 134, 218, 1) 100%);
         }
+
+        input[type=button],
+        input[type=submit],
+        input[type=reset],
+        textarea {
+            background-color: rgba(51, 213, 162, 1);
+            border: none;
+            color: white;
+            padding: 15px 80px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 13px;
+            -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+            box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
+            margin: 5px 20px 40px 20px;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        input[type=button]:hover,
+        input[type=submit]:hover,
+        input[type=reset]:hover,
+        textarea {
+            background-color: rgba(51, 213, 162, 1);
+        }
+
+        input[type=button]:active,
+        input[type=submit]:active,
+        input[type=reset]:active,
+        textarea {
+            -moz-transform: scale(0.95);
+            -webkit-transform: scale(0.95);
+            -o-transform: scale(0.95);
+            -ms-transform: scale(0.95);
+            transform: scale(0.95);
+        }
+
+        input[type=text],
+        input[type=password],
+        textarea {
+            background-color: #f6f6f6;
+            border: none;
+            color: #0d0d0d;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px;
+            width: 85%;
+            border: 2px solid #f6f6f6;
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus,
+        textarea {
+            background-color: #fff;
+            border-bottom: 2px solid #5fbae9;
+        }
+
+        input[type=text]:placeholder,
+        input[type=password]:placeholder,
+        textarea {
+            color: #cccccc;
+        }
     </style>
 </head>
 
-<body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;" cz-shortcut-listen="true">
-    <div class="w-60 h-full shadow-md bg-white px-1 absolute">
+<body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif;" cz-shortcut-listen="true">
+    <div class="w-80 h-full shadow-md bg-white absolute">
         <ul class="relative">
-            <li class="relative">
-                <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">Sidenav link 1</a>
+            <li class="relative gradient">
+                <a class="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl text-gray-800" href="#">
+                    <!--http://www.potlabicons.com/ -->
+                    <svg class="inline" viewBox="0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none">
+                        <style>
+                            @keyframes check {
+                                to {
+                                    stroke-dashoffset: 0;
+                                }
+                            }
+                        </style>
+                        <rect width="10" height="14" x="7" y="5" stroke="#0A0A30" stroke-width="1.5" rx="1" />
+                        <path stroke="#265BFF" stroke-linecap="round" stroke-width="1.5" d="M10 8.973h4m-4 3.64h2" style="animation:check 3s infinite cubic-bezier(.99,-.1,.01,1.02)" stroke-dashoffset="100" stroke-dasharray="100" />
+                    </svg>
+                    CVINDER
+                </a>
             </li>
-            <li class="relative">
-                <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">Sidenav link 2</a>
+            <br>
+            <li class="relative px-2">
+                <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
+                <input type="text" id="user" name="user" placeholder="Nombre">
             </li>
-            <li class="relative">
-                <a class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">Sidenav link 2</a>
+            <li class="relative px-2">
+                <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
+                <textarea id="w3review" name="w3review" rows="4" cols="20" placeholder="Descripción"></textarea>
             </li>
         </ul>
     </div>
