@@ -28,6 +28,10 @@ class EnterpriseController extends Controller
         //
     }
 
+    public function form() {
+        return view('enterprise.form');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

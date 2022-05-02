@@ -28,6 +28,10 @@ class WorkerController extends Controller
         //
     }
 
+    public function form() {
+        return view('worker.form');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
