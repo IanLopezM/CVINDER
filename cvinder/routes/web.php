@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\EnterpriseController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\Controller;
 
 
 /*
@@ -30,6 +31,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get("/layouts/login", [Controller::class, "login"])->name("layouts.login");
 
 Route::get("/worker", [WorkerController::class, "index"])->name("worker.index");
 Route::get("/worker/profile", [WorkerController::class, "profile"])->name("worker.profile");
