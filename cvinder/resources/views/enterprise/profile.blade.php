@@ -137,7 +137,7 @@
                 <hr>
                 <br>
                 <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Ofertas</p>
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Ofertas <button><a><i class='far fa-plus-square'></i></a></button></p>
                     <!-- foreach -->
                     <div class="mt-2 mr-2 inline-block">
                         <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
@@ -153,7 +153,19 @@
                     </div>
                     <div class="mt-2 mr-2 inline-block">
                         <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
-                            <a href="#" class="bgtransp">Ofer Nom 3 <i class='far fa-edit'></i>
+                            <a href="#" class="bgtransp">Oferta Nom 3 <i class='far fa-edit'></i>
+                            </a>
+                        </button>
+                    </div>
+                    <div class="mt-2 mr-2 inline-block">
+                        <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
+                            <a href="#" class="bgtransp">Oferton nombre 4 <i class='far fa-edit'></i>
+                            </a>
+                        </button>
+                    </div>
+                    <div class="mt-2 mr-2 inline-block">
+                        <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
+                            <a href="#" class="bgtransp">Of N 5 <i class='far fa-edit'></i>
                             </a>
                         </button>
                     </div>
