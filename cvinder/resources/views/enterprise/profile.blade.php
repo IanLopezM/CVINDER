@@ -102,7 +102,7 @@
 
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
     <div>
-        <div class="float-left w-1/5 shadow-md bg-white" style="height: 100vh">
+        <div class="float-left w-1/5 shadow-md bg-white overflow-auto" style="height: 100vh">
             <ul class="relative">
                 <li class="relative gradient">
                     <a class="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl text-gray-800" href="#">
