@@ -173,7 +173,7 @@
                 </li>
             </ul>
         </div>
-        <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 85vh;">
+        <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
             <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
                 <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold">Doit Sistemas Multisensoriales</h1>
                 <h5 class="text-blue-800 ml-12 mt-6 mr-12 text-xl font-extrabold leading-8">
@@ -185,15 +185,13 @@
                 </h5>
             </div>
         </div>
-        <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 15vh;">
-            <button id="navAction" class="mt-6 mx-auto lg:mx-0 hover:underline font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-24">
+        <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
+            <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-24">
                 <a href="#">Guardar
                 </a>
             </button>
         </div>
     </div>
-
-
 </body>
 
 </html>

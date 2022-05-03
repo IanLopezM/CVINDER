@@ -28,6 +28,10 @@ class WorkerController extends Controller
         //
     }
 
+    public function profile() {
+        return view('worker.profile');
+    }
+
     public function form() {
         return view('worker.form');
     }
