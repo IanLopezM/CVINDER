@@ -129,9 +129,9 @@
       <!-- Login Form -->
       <h2 class="my-4 text-5xl font-bold leading-tight">Inicia Sesión</h2>
       <form>
-        <input type="text" id="user" class="fadeIn second" name="user" placeholder="Usuari">
-        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contrasenya">
-        <input type="submit" class="gradient" value="Inicia Sesió">
+        <input type="text" id="user" class="fadeIn second" name="user" placeholder="Usuario">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
+        <input type="submit" class="gradient" value="Inicia Sesión">
       </form>
     </div>
   </div>
