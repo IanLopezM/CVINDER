@@ -137,6 +137,20 @@
                 <hr>
                 <br>
                 <li class="relative px-2">
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Numero</p>
+                    <input type="text" id="user" name="user" placeholder="Numero" maxlength="30">
+                </li>
+                <br>
+                <hr>
+                <br>
+                <li class="relative px-2">
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Telefono</p>
+                    <input type="text" id="user" name="user" placeholder="Telefono" maxlength="30">
+                </li>
+                <br>
+                <hr>
+                <br>
+                <li class="relative px-2">
                     <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
                     <textarea id="desc" name="desc" rows="10" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
                 </li>
