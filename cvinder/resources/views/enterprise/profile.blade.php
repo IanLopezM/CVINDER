@@ -16,8 +16,7 @@
 
         input[type=button],
         input[type=submit],
-        input[type=reset],
-        textarea {
+        input[type=reset]{
             background-color: rgba(51, 213, 162, 1);
             border: none;
             color: white;
@@ -41,15 +40,13 @@
 
         input[type=button]:hover,
         input[type=submit]:hover,
-        input[type=reset]:hover,
-        textarea {
+        input[type=reset]:hover{
             background-color: rgba(51, 213, 162, 1);
         }
 
         input[type=button]:active,
         input[type=submit]:active,
-        input[type=reset]:active,
-        textarea {
+        input[type=reset]:active{
             -moz-transform: scale(0.95);
             -webkit-transform: scale(0.95);
             -o-transform: scale(0.95);
@@ -59,7 +56,7 @@
 
         input[type=text],
         input[type=password],
-        textarea {
+        textarea{
             background-color: #f6f6f6;
             border: none;
             color: #0d0d0d;
@@ -78,25 +75,27 @@
             transition: all 0.5s ease-in-out;
             -webkit-border-radius: 5px 5px 5px 5px;
             border-radius: 5px 5px 5px 5px;
+            resize: none;
         }
 
         input[type=text]:focus,
         input[type=password]:focus,
-        textarea {
+        textarea:focus {
             background-color: #fff;
             border-bottom: 2px solid #5fbae9;
         }
 
         input[type=text]:placeholder,
         input[type=password]:placeholder,
-        textarea {
+        textarea:placeholder {
             color: #cccccc;
         }
     </style>
 </head>
 
-<body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif;" cz-shortcut-listen="true">
-    <div class="w-80 h-full shadow-md bg-white absolute">
+<body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
+<div>
+    <div class="float-left w-1/5 shadow-md bg-white" style="height: 100vh">
         <ul class="relative">
             <li class="relative gradient">
                 <a class="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl text-gray-800" href="#">
@@ -120,12 +119,21 @@
                 <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
                 <input type="text" id="user" name="user" placeholder="Nombre">
             </li>
+            <br>
+            <hr>
+            <br>
             <li class="relative px-2">
-                <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
-                <textarea id="w3review" name="w3review" rows="4" cols="20" placeholder="Descripción"></textarea>
+                <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
+                <textarea id="desc" name="desc" rows="10" cols="20" placeholder="Descripción"></textarea>
             </li>
         </ul>
     </div>
+    <div class="text-gray-800 float-right w-4/5" style="height: 100vh;">
+        <p>hola me llamo ian y tu como te llamas preciosa?hola m</p>
+    </div>
+</div>
+    
+    
 </body>
 
 </html>
