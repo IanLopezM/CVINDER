@@ -7,6 +7,7 @@
     <title>CVINDER</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link href=" https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
     <style>
@@ -90,6 +91,12 @@
         textarea:placeholder {
             color: #cccccc;
         }
+
+        .bgtransp {
+            background: linear-gradient(90deg, rgba(51, 213, 162, 1) 0%, rgba(81, 134, 218, 1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 </head>
 
@@ -124,10 +131,34 @@
                 <br>
                 <li class="relative px-2">
                     <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
-                    <textarea id="desc" name="desc" rows="20" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
+                    <textarea id="desc" name="desc" rows="10" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
                 </li>
                 <br>
                 <hr>
+                <br>
+                <li class="relative px-2">
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Ofertas</p>
+                    <!-- foreach -->
+                    <div class="mt-2 mr-2 inline-block">
+                        <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
+                            <a href="#" class="bgtransp">Oferta Nombre 1 <i class='far fa-edit'></i>
+                            </a>
+                        </button>
+                    </div>
+                    <div class="mt-2 mr-2 inline-block">
+                        <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
+                            <a href="#" class="bgtransp">Of N 2 <i class='far fa-edit'></i>
+                            </a>
+                        </button>
+                    </div>
+                    <div class="mt-2 mr-2 inline-block">
+                        <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
+                            <a href="#" class="bgtransp">Ofer Nom 3 <i class='far fa-edit'></i>
+                            </a>
+                        </button>
+                    </div>
+                    <!-- endforeach -->
+                </li>
             </ul>
         </div>
         <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 85vh;">
