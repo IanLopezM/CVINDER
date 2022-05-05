@@ -28,6 +28,12 @@ class OfferController extends Controller
         //
     }
 
+    public function matches()
+    {
+        return view('offer.matches');
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

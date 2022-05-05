@@ -36,6 +36,10 @@ class WorkerController extends Controller
         return view('worker.form');
     }
 
+    public function matches() {
+        return view('worker.matches');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
