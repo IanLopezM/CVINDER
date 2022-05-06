@@ -102,7 +102,7 @@
 
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
     <div>
-        <div class="float-left w-1/5 shadow-md bg-white overflow-auto" style="height: 100vh">
+        <div class="float-left w-1/6 shadow-md bg-white overflow-auto" style="height: 100vh">
             <ul class="relative">
                 <li class="relative gradient">
                     <a class="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl text-gray-800" href="#">
@@ -122,72 +122,42 @@
                     </a>
                 </li>
                 <br>
-                <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
-                    <input type="text" id="user" name="user" placeholder="Nombre" maxlength="15">
+                <li class="relative px-2 font-bold text-xl lg:text-2xl text-gray-800 mr-2 ml-4 mb-2">
+                    <h5 class="leading-tight text-3xl mb-2">Matches</h5>
                 </li>
-                <br>
                 <hr>
                 <br>
-                <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Apellidos</p>
-                    <input type="text" id="user" name="user" placeholder="Apellido" maxlength="30">
+                <!-- foreach -->
+                <li class="relative px-2 font-bold text-xl lg:text-2xl text-gray-800 mr-4 ml-4 mb-1">
+                    <h5 class="leading-tight text-xl mb-2">Ian López Molina</h5>
+                    <div>
+                        <i class="ml-3 fa-regular fa-circle-xmark float-left"></i><i class="mr-3 fa-regular fa-message float-right"></i>
+                    </div>
+                    <br>
                 </li>
+
+                <hr>
+                <!-- end foreach -->
                 <br>
+                <li class="relative px-2 font-bold text-xl lg:text-xl text-gray-800 mr-2 ml-4 mb-2">
+                    <h5 class="leading-tight text-3xl mb-2">Tus likes</h5>
+                </li>
                 <hr>
                 <br>
-                <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Numero</p>
-                    <input type="text" id="user" name="user" placeholder="Numero" maxlength="30">
+                <!-- foreach -->
+                <li class="relative px-2 font-bold text-xl lg:text-3xl text-gray-800 mr-4 ml-4 mb-1">
+                    <h5 class="leading-tight text-xl mb-2">Alba Fernandez de Soria Sandoval</h5>
+                    <div>
+                        <i class="ml-3 fa-regular fa-circle-xmark float-left"></i>
+                    </div>
+                    <br>
                 </li>
-                <br>
                 <hr>
-                <br>
-                <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Telefono</p>
-                    <input type="text" id="user" name="user" placeholder="Telefono" maxlength="30">
-                </li>
-                <br>
-                <hr>
-                <br>
-                <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
-                    <textarea id="desc" name="desc" rows="10" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
-                </li>
-                <br>
-                <hr>
-                <br>
-                <li class="relative px-2">
-                </li>
+                <!-- end foreach -->
             </ul>
         </div>
-        <div class="text-gray-800 float-right w-4/5 gradient overflow-auto" style="height: 100vh;">
-            <!-- foreach -->
-            <div class="flex justify-center mt-6 mr-4 ml-4 float-left font-bold text-2xl lg:text-4xl text-gray-800 w-1/4">
-                <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
-                    <h5 class="leading-tight text-4xl mb-2">Marc Cozar</h5>
-                    <div>
-                        <i class="ml-3 fa-regular fa-circle-xmark float-left"></i><i class="mr-3 fa-regular fa-message float-right"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-center mt-6 mr-4 ml-4 float-left font-bold text-2xl lg:text-4xl text-gray-800 w-1/4">
-                <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
-                    <h5 class="leading-tight text-4xl mb-2">Ian López</h5>
-                    <div>
-                        <i class="ml-3 fa-regular fa-circle-xmark float-left"></i><i class="mr-3 fa-regular fa-message float-right"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-center mt-6 mr-4 ml-4 float-left font-bold text-2xl lg:text-4xl text-gray-800 w-1/4">
-                <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
-                    <h5 class="leading-tight text-4xl mb-2">Ayman Kaddar</h5>
-                    <div>
-                        <i class="ml-3 fa-regular fa-circle-xmark float-left"></i><i class="mr-3 fa-regular fa-message float-right"></i>
-                    </div>
-                </div>
-            </div>
-            <!-- endforeach  -->
+        <div class="text-gray-800 float-right w-5/6 bg-gray-100 overflow-auto" style="height: 100vh;">
+
         </div>
     </div>
 </body>
