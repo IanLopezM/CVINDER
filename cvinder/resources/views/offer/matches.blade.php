@@ -121,31 +121,26 @@
                         CVINDER
                     </a>
                 </li>
-                <br>
-                <li class="relative px-2 font-bold text-xl lg:text-2xl text-gray-800 mr-2 ml-4 mb-2">
+                <li class="relative px-2 font-bold text-xl lg:text-2xl text-gray-800 mr-2 ml-4 mb-2 mt-2">
                     <h5 class="leading-tight text-3xl mb-2">Matches</h5>
                 </li>
                 <hr>
-                <br>
                 <!-- foreach -->
-                <li class="relative px-2 font-bold text-xl lg:text-2xl text-gray-800 mr-4 ml-4 mb-1">
+                <li class="relative px-2 font-bold text-xl lg:text-3xl text-gray-800 mr-2 ml-4 mb-2 mt-2">
                     <h5 class="leading-tight text-xl mb-2">Ian López Molina</h5>
                     <div>
                         <i class="ml-3 fa-regular fa-circle-xmark float-left"></i><i class="mr-3 fa-regular fa-message float-right"></i>
                     </div>
                     <br>
                 </li>
-
                 <hr>
                 <!-- end foreach -->
-                <br>
-                <li class="relative px-2 font-bold text-xl lg:text-xl text-gray-800 mr-2 ml-4 mb-2">
+                <li class="relative px-2 font-bold text-xl lg:text-2xl text-gray-800 mr-2 ml-4 mb-2 mt-2">
                     <h5 class="leading-tight text-3xl mb-2">Tus likes</h5>
                 </li>
                 <hr>
-                <br>
                 <!-- foreach -->
-                <li class="relative px-2 font-bold text-xl lg:text-3xl text-gray-800 mr-4 ml-4 mb-1">
+                <li class="relative px-2 font-bold text-xl lg:text-3xl text-gray-800 mr-2 ml-4 mb-2 mt-2">
                     <h5 class="leading-tight text-xl mb-2">Alba Fernandez de Soria Sandoval</h5>
                     <div>
                         <i class="ml-3 fa-regular fa-circle-xmark float-left"></i>
@@ -157,7 +152,6 @@
             </ul>
         </div>
         <div class="text-gray-800 float-right w-5/6 bg-gray-100 overflow-auto" style="height: 100vh;">
-
         </div>
     </div>
 </body>
