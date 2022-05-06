@@ -15,7 +15,7 @@ class WorkerController extends Controller
      */
     public function index()
     {
-        //
+        return view('worker.index');
     }
 
     /**
