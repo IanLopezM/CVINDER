@@ -57,7 +57,8 @@
 
         input[type=text],
         input[type=password],
-        textarea {
+        textarea,
+        select {
             background-color: #f6f6f6;
             border: none;
             color: #0d0d0d;
@@ -81,14 +82,16 @@
 
         input[type=text]:focus,
         input[type=password]:focus,
-        textarea:focus {
+        textarea:focus,
+        select:focus {
             background-color: #fff;
             border-bottom: 2px solid #5fbae9;
         }
 
         input[type=text]:placeholder,
         input[type=password]:placeholder,
-        textarea:placeholder {
+        textarea:placeholder,
+        select::placeholder {
             color: #cccccc;
         }
 
@@ -146,6 +149,17 @@
                 <li class="relative px-2">
                     <p class="text-gray-800 font-bold text-xl mb-2 px-2">Telefono</p>
                     <input type="text" id="user" name="user" placeholder="Telefono" maxlength="30">
+                </li>
+                <br>
+                <hr>
+                <br>
+                <li class="relative px-2">
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Provincia</p>
+                    <select id="provincias">
+                        <option>New York </option>
+                        <option>Bucarest</option>
+                        <option>Madrid</option>
+                    </select>
                 </li>
                 <br>
                 <hr>
