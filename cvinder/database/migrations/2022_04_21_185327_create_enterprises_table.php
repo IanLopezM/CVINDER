@@ -17,6 +17,7 @@ class CreateEnterprisesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->foreignId('province_id')->constrained();
             $table->boolean('firstTime');
             $table->timestamps();
         });

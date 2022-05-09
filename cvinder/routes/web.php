@@ -40,7 +40,7 @@ Route::get("/worker/matches", [WorkerController::class, "matches"])->name("worke
 Route::get("/worker/form", [WorkerController::class, "form"])->name("worker.form");                         //
 
 Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->name("enterprise.profile");    //done(interficie)
-Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");             //
+Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");             // DOING
 
 Route::get("/offer", [OfferController::class, "index"])->name("offer.index");                               //
 Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //done(interficie)

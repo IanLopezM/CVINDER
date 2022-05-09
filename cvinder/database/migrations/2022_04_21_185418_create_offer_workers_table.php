@@ -17,6 +17,8 @@ class CreateOfferWorkersTable extends Migration
             $table->id();
             $table->foreignId('offer_id')->constrained();
             $table->foreignId('worker_id')->constrained();
+            $table->boolean('offer_ok')->default(false);
+            $table->boolean('worker_ok')->default(false);
             $table->timestamps();
         });
     }
