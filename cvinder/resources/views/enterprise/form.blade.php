@@ -152,7 +152,7 @@
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Provincia</p>
                         <select name="province" id="province">
                             @foreach ($provinces as $province)
-                                <option value="{{$province->id}}">{{$province->name}}</option>
+                            <option value="{{$province->id}}">{{$province->name}}</option>
                             @endforeach
                         </select>
                     </li>
@@ -179,25 +179,29 @@
 <script>
     var user = document.getElementById("user");
     var title = document.getElementById("title");
-    user.addEventListener("keyup", updateUser);
-    user.addEventListener("change", updateUser);
 
     var pwd = document.getElementById("pwd");
 
     var desc = document.getElementById("desc");
     var bodydesc = document.getElementById("bodydesc");
-    desc.addEventListener("keyup", updateDesc);
-    desc.addEventListener("change", updateDesc);
 
     var province = document.getElementById("province");
     var ubi = document.getElementById("ubi");
-    province.addEventListener("keyup", updateUbi);
-    province.addEventListener("change", updateUbi);
+    var provinces = province.children;
 
     var btnGuardar = document.getElementById("guardar");
-    btnGuardar.addEventListener("click", saveEnterprise);
 
     var form = document.getElementById("formEnterprise");
+
+    document.addEventListener('DOMContentLoaded', function(event) {
+        user.addEventListener("keyup", updateUser);
+        user.addEventListener("change", updateUser);
+        desc.addEventListener("keyup", updateDesc);
+        desc.addEventListener("change", updateDesc);
+        province.addEventListener("keyup", updateUbi);
+        province.addEventListener("change", updateUbi);
+        btnGuardar.addEventListener("click", saveEnterprise);
+    });
 
     function updateUser() {
         title.innerHTML = "";
@@ -211,7 +215,9 @@
 
     function updateUbi() {
         ubi.innerHTML = "";
-        ubi.append(province.value);
+        // ubi.append(province.innerText);
+        ubi.append(provinces[province.value - 1].innerHTML);
+        console.log(provinces[province.value - 1].innerHTML);
     }
 
     function saveEnterprise() {
