@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Enterprise;
 use App\Models\Province;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreEnterpriseRequest;
 use App\Http\Requests\UpdateEnterpriseRequest;
 use Illuminate\Support\Facades\Hash;
@@ -51,14 +52,21 @@ class EnterpriseController extends Controller
      */
     public function store(StoreEnterpriseRequest $request)
     {
-        $enterprise = new Enterprise();
-        $enterprise->name = $request["user"];
-        $enterprise->password = Hash::make($request["pwd"]);
-        $enterprise->description = $request["desc"];
-        $enterprise->province_id = $request["province"];
-        $enterprise->firstTime = false;
-        $enterprise->save();
-        return redirect()->route('welcome');
+        $userExists = DB::select('select * from enterprises where name = "' . $request["user"] . '"');
+
+        if ($userExists == null) {
+            $enterprise = new Enterprise();
+            $enterprise->name = $request["user"];
+            $enterprise->password = Hash::make($request["pwd"]);
+            $enterprise->description = $request["desc"];
+            $enterprise->province_id = $request["province"];
+            $enterprise->firstTime = false;
+            $enterprise->save();
+            return redirect()->route('welcome');
+        } else {
+            return redirect()->route('enterprise.form');
+        }
+
     }
 
     /**
