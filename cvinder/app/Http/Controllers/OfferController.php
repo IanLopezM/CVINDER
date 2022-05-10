@@ -28,6 +28,11 @@ class OfferController extends Controller
         //
     }
 
+    public function form()
+    {
+        return view('offer.form');
+    }
+
     public function matches()
     {
         return view('offer.matches');

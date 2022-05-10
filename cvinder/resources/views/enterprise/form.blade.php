@@ -158,6 +158,7 @@
                     </li>
                     <br>
                     <hr>
+                    <input type="hidden" id="needOffer" name="needOffer" value="needOffer">
                 </ul>
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
@@ -169,7 +170,7 @@
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
                 <button id="guardar" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-24">
-                    <a href="#">Guardar
+                    <a href="#">Guardar y Crear Una Oferta
                     </a>
                 </button>
             </div>

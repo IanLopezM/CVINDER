@@ -60,8 +60,14 @@ class EnterpriseController extends Controller
             $enterprise->password = Hash::make($request["pwd"]);
             $enterprise->description = $request["desc"];
             $enterprise->province_id = $request["province"];
-            $enterprise->firstTime = false;
+            
+            if ($request["needOffer"] == "needOffer") {
+                $enterprise->firstTime = true;
+            } else {
+                $enterprise->firstTime = false;
+            }
             $enterprise->save();
+            
             return redirect()->route('welcome');
         } else {
             return redirect()->route('enterprise.form');
