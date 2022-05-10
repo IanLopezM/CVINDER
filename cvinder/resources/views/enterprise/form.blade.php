@@ -105,66 +105,120 @@
 
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
     <div>
-        <div class="float-left w-1/5 shadow-md bg-white overflow-auto" style="height: 100vh">
-            <ul class="relative">
-                <li class="relative gradient">
-                    <a class="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl text-gray-800" href="#">
-                        <!--http://www.potlabicons.com/ -->
-                        <svg class="inline" viewBox="0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none">
-                            <style>
-                                @keyframes check {
-                                    to {
-                                        stroke-dashoffset: 0;
+        <form method="POST" action="{{route('enterprise.store')}}" id="formEnterprise">
+            @csrf
+            <div class="float-left w-1/5 shadow-md bg-white overflow-auto" style="height: 100vh">
+                <ul class="relative">
+                    <li class="relative gradient">
+                        <a class="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl text-gray-800" href="#">
+                            <!--http://www.potlabicons.com/ -->
+                            <svg class="inline" viewBox="0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none">
+                                <style>
+                                    @keyframes check {
+                                        to {
+                                            stroke-dashoffset: 0;
+                                        }
                                     }
-                                }
-                            </style>
-                            <rect width="10" height="14" x="7" y="5" stroke="#0A0A30" stroke-width="1.5" rx="1" />
-                            <path stroke="#265BFF" stroke-linecap="round" stroke-width="1.5" d="M10 8.973h4m-4 3.64h2" style="animation:check 3s infinite cubic-bezier(.99,-.1,.01,1.02)" stroke-dashoffset="100" stroke-dasharray="100" />
-                        </svg>
-                        CVINDER
-                    </a>
-                </li>
-                <br>
-                <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
-                    <input type="text" id="user" name="user" placeholder="Nombre" maxlength="30">
-                </li>
-                <br>
-                <hr>
-                <br>
-                <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
-                    <textarea id="desc" name="desc" rows="10" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
-                </li>
-                <br>
-                <hr>
-                <br>
-                <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Provincia</p>
-                    <select id="provincias">
-                        <option>New York </option>
-                        <option>Bucarest</option>
-                        <option>Madrid</option>
-                    </select>
-                </li>
-                <br>
-                <hr>
-            </ul>
-        </div>
-        <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
-            <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
-                <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold"></h1>
-                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold"></h4>
-                <h5 class="text-blue-800 ml-10 mt-6 mr-12 text-xl font-extrabold leading-8"></h5>
+                                </style>
+                                <rect width="10" height="14" x="7" y="5" stroke="#0A0A30" stroke-width="1.5" rx="1" />
+                                <path stroke="#265BFF" stroke-linecap="round" stroke-width="1.5" d="M10 8.973h4m-4 3.64h2" style="animation:check 3s infinite cubic-bezier(.99,-.1,.01,1.02)" stroke-dashoffset="100" stroke-dasharray="100" />
+                            </svg>
+                            CVINDER
+                        </a>
+                    </li>
+                    <br>
+                    <li class="relative px-2">
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
+                        <input type="text" id="user" name="user" placeholder="Nombre" maxlength="30">
+                    </li>
+                    <br>
+                    <hr>
+                    <br>
+                    <li class="relative px-2">
+                        <label class="text-gray-800 font-bold text-xl mb-2 px-2">Contraseña</label>
+                        <input type="password" id="pwd" name="pwd" placeholder="password" minlength="8">
+                    </li>
+                    <br>
+                    <hr>
+                    <br>
+                    <li class="relative px-2">
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
+                        <textarea id="desc" name="desc" rows="10" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
+                    </li>
+                    <br>
+                    <hr>
+                    <br>
+                    <li class="relative px-2">
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Provincia</p>
+                        <select name="province" id="province">
+                            @foreach ($provinces as $province)
+                                <option value="{{$province->id}}">{{$province->name}}</option>
+                            @endforeach
+                        </select>
+                    </li>
+                    <br>
+                    <hr>
+                </ul>
             </div>
-        </div>
-        <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
-            <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-24">
-                <a href="#">Guardar
-                </a>
-            </button>
-        </div>
+            <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
+                <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
+                    <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="title"></h1>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="ubi"></h4>
+                    <h5 class="text-blue-800 ml-10 mt-6 mr-12 text-xl font-extrabold leading-8" id="bodydesc"></h5>
+                </div>
+            </div>
+            <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
+                <button id="guardar" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-24">
+                    <a href="#">Guardar
+                    </a>
+                </button>
+            </div>
+        </form>
     </div>
 </body>
+<script>
+    var user = document.getElementById("user");
+    var title = document.getElementById("title");
+    user.addEventListener("keyup", updateUser);
+    user.addEventListener("change", updateUser);
+
+    var pwd = document.getElementById("pwd");
+
+    var desc = document.getElementById("desc");
+    var bodydesc = document.getElementById("bodydesc");
+    desc.addEventListener("keyup", updateDesc);
+    desc.addEventListener("change", updateDesc);
+
+    var province = document.getElementById("province");
+    var ubi = document.getElementById("ubi");
+    province.addEventListener("keyup", updateUbi);
+    province.addEventListener("change", updateUbi);
+
+    var btnGuardar = document.getElementById("guardar");
+    btnGuardar.addEventListener("click", saveEnterprise);
+
+    var form = document.getElementById("formEnterprise");
+
+    function updateUser() {
+        title.innerHTML = "";
+        title.append(user.value);
+    }
+
+    function updateDesc() {
+        bodydesc.innerHTML = "";
+        bodydesc.append(desc.value);
+    }
+
+    function updateUbi() {
+        ubi.innerHTML = "";
+        ubi.append(province.value);
+    }
+
+    function saveEnterprise() {
+        if (user.value != null && desc.value != null && province.value != null && pwd.value != null && pwd.value.length > 8) {
+            form.submit();
+        }
+    }
+</script>
 
 </html>

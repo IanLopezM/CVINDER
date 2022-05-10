@@ -17,6 +17,7 @@ class CreateWorkersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
+            $table->string('password');
             $table->integer('age');
             $table->text('address');
             $table->string('phone');

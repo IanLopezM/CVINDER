@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enterprise;
+use App\Models\Province;
 use App\Http\Requests\StoreEnterpriseRequest;
 use App\Http\Requests\UpdateEnterpriseRequest;
+use Illuminate\Support\Facades\Hash;
 
 class EnterpriseController extends Controller
 {
@@ -30,7 +32,10 @@ class EnterpriseController extends Controller
 
     public function form()
     {
-        return view('enterprise.form');
+        $provinces = Province::all();
+
+        return view('enterprise.form')
+            ->with('provinces', $provinces);
     }
 
     public function profile()
@@ -46,7 +51,14 @@ class EnterpriseController extends Controller
      */
     public function store(StoreEnterpriseRequest $request)
     {
-        //
+        $enterprise = new Enterprise();
+        $enterprise->name = $request["user"];
+        $enterprise->password = Hash::make($request["pwd"]);
+        $enterprise->description = $request["desc"];
+        $enterprise->province_id = $request["province"];
+        $enterprise->firstTime = false;
+        $enterprise->save();
+        return redirect()->route('welcome');
     }
 
     /**

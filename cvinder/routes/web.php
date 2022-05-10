@@ -20,7 +20,7 @@ use App\Http\Controllers\Controller;
 
 Route::get('/', function () {
     return view('welcome');                                                                                 //done(interficie)
-});
+})->name("welcome");
 
 Route::middleware([
     'auth:sanctum',
@@ -41,6 +41,7 @@ Route::get("/worker/form", [WorkerController::class, "form"])->name("worker.form
 
 Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->name("enterprise.profile");    //done(interficie)
 Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");             // DOING
+Route::post("/enterprise/store", [EnterpriseController::class, "store"])->name("enterprise.store");         //DOING
 
 Route::get("/offer", [OfferController::class, "index"])->name("offer.index");                               //
 Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //done(interficie)

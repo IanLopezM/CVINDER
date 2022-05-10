@@ -16,9 +16,10 @@ class CreateEnterprisesTable extends Migration
         Schema::create('enterprises', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('password');
             $table->text('description');
             $table->foreignId('province_id')->constrained();
-            $table->boolean('firstTime');
+            $table->boolean('firstTime')->default(true);
             $table->timestamps();
         });
     }
