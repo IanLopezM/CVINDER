@@ -106,7 +106,7 @@
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
     <div>
         <form method="POST" action="{{route('enterprise.edit')}}" id="formEnterprise">
-
+        @csrf
             <div class="float-left w-1/5 shadow-md bg-white overflow-auto" style="height: 100vh">
                 <ul class="relative">
                     <li class="relative gradient">
@@ -129,14 +129,14 @@
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
-                        <input type="text" id="user" name="user" placeholder="Nombre" maxlength="30">
+                        <input type="text" id="user" name="user" placeholder="{{$enterprise->name}}" maxlength="30">
                     </li>
                     <br>
                     <hr>
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Mail</p>
-                        <input type="text" id="mail" name="mail" placeholder="{{$enterprise->mail}}" maxlength="30" readonly>
+                        <input type="text" id="mail" name="mail" placeholder="{{$enterprise->mail}}" value="{{$enterprise->mail}}" maxlength="30" readonly>
                     </li>
                     <br>
                     <hr>
@@ -170,7 +170,7 @@
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
-                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
+                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="Descripción" maxlength="1300">{{$enterprise->description}}</textarea>
                     </li>
                 </ul>
             </div>
@@ -216,7 +216,6 @@
         user = document.getElementById("user")
         title = document.getElementById("title")
         mail = document.getElementById("mail")
-        pwd = document.getElementById("pwd")
         desc = document.getElementById("desc");
         bodydesc = document.getElementById("bodydesc")
         province = document.getElementById("province")
@@ -251,7 +250,7 @@
     }
 
     function editEnterprise() {
-        if (user.value != null && mail.value != null && desc.value != null && province.value != null && pwd.value != null && pwd.value.length > 8) {
+        if (user.value != null && mail.value != null && desc.value != null && province.value != null) {
             form.submit();
         }
     }

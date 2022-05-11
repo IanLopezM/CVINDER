@@ -128,22 +128,8 @@
                     </li>
                     <br>
                     <li class="relative px-2">
-                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
-                        <input type="text" id="user" name="user" placeholder="Nombre" maxlength="30">
-                    </li>
-                    <br>
-                    <hr>
-                    <br>
-                    <li class="relative px-2">
-                        <label class="text-gray-800 font-bold text-xl mb-2 px-2">Contraseña</label>
-                        <input type="password" id="pwd" name="pwd" placeholder="password" minlength="8">
-                    </li>
-                    <br>
-                    <hr>
-                    <br>
-                    <li class="relative px-2">
-                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
-                        <textarea id="desc" name="desc" rows="10" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Title</p>
+                        <input type="text" id="offerTitle" name="offerTitle" placeholder="Nombre" maxlength="30">
                     </li>
                     <br>
                     <hr>
@@ -151,8 +137,17 @@
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Provincia</p>
                         <select name="province" id="province">
-
+                            @foreach ($provinces as $province)
+                            <option value="{{$province->id}}">{{$province->name}}</option>
+                            @endforeach
                         </select>
+                    </li>
+                    <br>
+                    <hr>
+                    <br>
+                    <li class="relative px-2">
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
+                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
                     </li>
                     <br>
                     <hr>
@@ -168,7 +163,7 @@
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
                 <button id="guardar" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-24">
-                    <a href="#">Guardar y Crear Una Oferta
+                    <a href="#">Guardar
                     </a>
                 </button>
             </div>
@@ -179,6 +174,7 @@
     var user = document.getElementById("user");
     var title = document.getElementById("title");
 
+    var mail = document.getElementById("mail");
     var pwd = document.getElementById("pwd");
 
     var desc = document.getElementById("desc");
@@ -214,13 +210,12 @@
 
     function updateUbi() {
         ubi.innerHTML = "";
-        // ubi.append(province.innerText);
-        ubi.append(provinces[province.value - 1].innerHTML);
+        ubi.append(provinces[province.value - 1].innerHTML + ", España");
         console.log(provinces[province.value - 1].innerHTML);
     }
 
     function saveEnterprise() {
-        if (user.value != null && desc.value != null && province.value != null && pwd.value != null && pwd.value.length > 8) {
+        if (user.value != null && mail.value != null && desc.value != null && province.value != null && pwd.value != null && pwd.value.length > 8) {
             form.submit();
         }
     }

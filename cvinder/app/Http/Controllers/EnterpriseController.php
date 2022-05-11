@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Enterprise;
 use App\Models\Province;
 use App\Models\Offer;
+use App\Models\Sector;
+use App\Models\Skill;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreEnterpriseRequest;
 use App\Http\Requests\UpdateEnterpriseRequest;
@@ -82,7 +84,7 @@ class EnterpriseController extends Controller
         $yourenterprise = DB::select('select * from enterprises where mail = "' . $request["enterprise"] . '"');
         $enterprise = Enterprise::find($yourenterprise[0]->id);
         $province = Province::find($yourenterprise[0]->province_id);
-        // dd($province);
+
         $provinces = Province::all();
         //var enterprise contiene la empresa, var province contiene la provincia, var provinces contiene todas las provincias
 
@@ -90,8 +92,15 @@ class EnterpriseController extends Controller
         // return Hash::check($request["enterprisepwd"], $password[0]->password);
         // return $request["enterprisepwd"];
         if (Hash::check($request["enterprisepwd"], $password[0]->password)) {
+            // if ($enterprise->firstTime == 1) {
+            //     $sectors = Sector::all();
+            //     $skills = Skill::all();
+            //     return view('offer.form')
+            //         ->with(['enterprise' => $enterprise, 'sectors' => $sectors, 'skills' => $skills]);
+            // } else {
             return view('enterprise.profile')
                 ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
+            // }
         } else {
             return redirect()->route('layouts.login');
         }
@@ -114,9 +123,22 @@ class EnterpriseController extends Controller
      * @param  \App\Models\Enterprise  $enterprise
      * @return \Illuminate\Http\Response
      */
-    public function edit(Enterprise $enterprise)
+    public function edit(StoreEnterpriseRequest $request)
     {
-        
+
+        DB::table('enterprises')
+            ->where('mail', $request["mail"])
+            ->update(['name' => $request["user"], 'description' => $request["desc"], 'province_id' => $request["province"]]);
+
+        $yourenterprise = DB::select('select * from enterprises where mail = "' . $request["mail"] . '"');
+        // dd( $request);
+
+        $enterprise = Enterprise::find($yourenterprise[0]->id);
+        $province = Province::find($yourenterprise[0]->province_id);
+        $provinces = Province::all();
+
+        return view('enterprise.profile')
+            ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
     }
 
     /**
