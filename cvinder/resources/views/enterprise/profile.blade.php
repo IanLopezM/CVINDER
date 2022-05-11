@@ -189,7 +189,7 @@
         </div>
         <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
             <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
-                <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold">Doit Sistemas Multisensoriales</h1>
+                <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold">{{$yourenterprise}}</h1>
                 <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold">Tarragona, España</h4>
                 <h5 class="text-blue-800 ml-10 mt-6 mr-12 text-xl font-extrabold leading-8">
                     DOIT es una empresa que diseña, fabrica e instala material para la estimulación sensorial, multisensorial o snoezelen en España. Todos nuestros productos se adaptan en todo lo posible a las necesidades de nuestros clientes. Nuestra materia prima es de procedencia de la UE, por lo que garantizamos un producto final de gran calidad y durabilidad.

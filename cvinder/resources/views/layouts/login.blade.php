@@ -136,42 +136,57 @@
       <h2 class="my-4 text-5xl font-bold leading-tight">Empresa</h2>
       <form method="POST" action="{{route('enterprise.check')}}" id="formEnterprise">
         @csrf
-        <input type="text" id="user" class="fadeIn second" name="user" placeholder="Usuario">
-        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
-        <button id="iniciaEmpresa" class="gradient">
-          <a href="#">Inicia Sesión
-          </a>
-        </button>
+        <input type="text" id="enterprise" class="fadeIn second" name="enterprise" placeholder="Empresa">
+        <input type="password" id="enterprisepwd" class="fadeIn third" name="enterprisepwd" placeholder="Contraseña">
       </form>
+      <button id="iniciaEmpresa" class="gradient">
+        <a href="#">Inicia Sesión
+        </a>
+      </button>
+
     </div>
     <div class="formContent ml-4">
       <!-- Login Form -->
       <h2 class="my-4 text-5xl font-bold leading-tight">Trabajador</h2>
       <form method="POST" action="{{route('worker.check')}}" id="formWorker">
-        <input type="text" id="user" class="fadeIn second" name="user" placeholder="Usuario">
-        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
-        <button id="iniciaWorker" class="gradient">
-          <a href="#">Inicia Sesión
-          </a>
-        </button>
+        @csrf
+        <input type="text" id="worker" class="fadeIn second" name="worker" placeholder="Trabajador">
+        <input type="password" id="workerpwd" class="fadeIn third" name="workerpwd" placeholder="Contraseña">
       </form>
+      <button id="iniciaWorker" class="gradient">
+        <a href="#">Inicia Sesión
+        </a>
+      </button>
     </div>
   </div>
 </body>
 <script>
+  var enterprise, enterprisepwd, worker, workerpwd;
+  var formEnterprise, formWorker;
+
   document.addEventListener('DOMContentLoaded', function(event) {
-    var btnIniciarEmpresa = document.getElementById("iniciarEmpresa");
-    var btnIniciarWorker = document.getElementById("iniciarWorker");
+    var btnIniciarEmpresa = document.getElementById("iniciaEmpresa");
+    var btnIniciarWorker = document.getElementById("iniciaWorker");
+    enterprise = document.getElementById("enterprise");
+    enterprisepwd = document.getElementById("enterprisepwd");
+    worker = document.getElementById("worker");
+    workerpwd = document.getElementById("workerpwd");
+    formEnterprise = document.getElementById("formEnterprise");
+    formWorker = document.getElementById("formWorker");
     btnIniciarEmpresa.addEventListener("click", checkEnterprise);
     btnIniciarWorker.addEventListener("click", checkWorker);
   });
 
   function checkEnterprise() {
-
+    if (enterprise.value != null && enterprisepwd != null) {
+      formEnterprise.submit();
+    }
   }
 
   function checkWorker() {
-
+    if (worker.value != null && workerpwd != null) {
+      formWorker.submit();
+    }
   }
 </script>
 

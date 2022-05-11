@@ -61,23 +61,34 @@ class EnterpriseController extends Controller
             $enterprise->password = Hash::make($request["pwd"]);
             $enterprise->description = $request["desc"];
             $enterprise->province_id = $request["province"];
-            
+
             if ($request["needOffer"] == "needOffer") {
                 $enterprise->firstTime = true;
             } else {
                 $enterprise->firstTime = false;
             }
             $enterprise->save();
-            
+
             return redirect()->route('welcome');
         } else {
             return redirect()->route('enterprise.form');
         }
-
     }
 
-    public function check(Enterprise $enterprise) {
-        
+    public function check(StoreEnterpriseRequest $request)
+    {
+        $password = DB::select('select password from enterprises where mail = "' . $request["enterprise"] . '"');
+        $yourenterprise = DB::select('select * from enterprises where mail = "' . $request["enterprise"] . '"');
+
+        // return $password["password"];
+        // return Hash::check($request["enterprisepwd"], $password[0]->password);
+        // return $request["enterprisepwd"];
+        if (Hash::check($request["enterprisepwd"], $password[0]->password)) {
+            return redirect()->route('enterprise.profile')
+                ->with('yourenterprise', $yourenterprise);
+        } else {
+            return redirect()->route('layouts.login');
+        }
     }
 
     /**

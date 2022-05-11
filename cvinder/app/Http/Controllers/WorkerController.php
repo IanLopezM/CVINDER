@@ -51,6 +51,10 @@ class WorkerController extends Controller
         //
     }
 
+    public function check(Worker $worker) {
+        
+    }
+
     /**
      * Display the specified resource.
      *
@@ -60,10 +64,6 @@ class WorkerController extends Controller
     public function show(Worker $worker)
     {
         //
-    }
-
-    public function check(Worker $worker) {
-        
     }
 
     /**
