@@ -135,12 +135,29 @@
                     <hr>
                     <br>
                     <li class="relative px-2">
-                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Provincia</p>
-                        <select name="province" id="province">
-                            @foreach ($provinces as $province)
-                            <option value="{{$province->id}}">{{$province->name}}</option>
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Sector</p>
+                        <select name="sector" id="sector">
+                            @foreach ($sectors as $sector)
+                            <option value="{{$sector->id}}">{{$sector->name}}</option>
                             @endforeach
                         </select>
+                    </li>
+                    <br>
+                    <hr>
+                    <br>
+                    <li class="relative px-2">
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Skills</p>
+                        <select name="sector" id="sector">
+                            @foreach ($skills as $skill)
+                            <option value="{{$skill->id}}">{{$skill->name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="mt-2 mr-2 inline-block">
+                            <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
+                                <a href="#" class="bgtransp">a<i class='far fa-edit'></i>
+                                </a>
+                            </button>
+                        </div>
                     </li>
                     <br>
                     <hr>

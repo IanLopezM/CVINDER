@@ -92,15 +92,15 @@ class EnterpriseController extends Controller
         // return Hash::check($request["enterprisepwd"], $password[0]->password);
         // return $request["enterprisepwd"];
         if (Hash::check($request["enterprisepwd"], $password[0]->password)) {
-            // if ($enterprise->firstTime == 1) {
-            //     $sectors = Sector::all();
-            //     $skills = Skill::all();
-            //     return view('offer.form')
-            //         ->with(['enterprise' => $enterprise, 'sectors' => $sectors, 'skills' => $skills]);
-            // } else {
+            if ($enterprise->firstTime == 1) {
+                $sectors = Sector::all();
+                $skills = Skill::all();
+                return view('offer.form')
+                    ->with(['enterprise' => $enterprise, 'sectors' => $sectors, 'skills' => $skills]);
+            } else {
             return view('enterprise.profile')
                 ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
-            // }
+            }
         } else {
             return redirect()->route('layouts.login');
         }
