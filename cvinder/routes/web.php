@@ -44,6 +44,7 @@ Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->nam
 Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");             //done(interficie) done(functioning)
 Route::post("/enterprise/store", [EnterpriseController::class, "store"])->name("enterprise.store");         //DOING
 Route::post("/enterprise/check", [EnterpriseController::class, "check"])->name("enterprise.check");         //DOING
+Route::post("/enterprise/edit", [EnterpriseController::class, "edit"])->name("enterprise.edit");            //DOING
 
 Route::get("/offer", [OfferController::class, "index"])->name("offer.index");                               //
 Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //done(interficie)

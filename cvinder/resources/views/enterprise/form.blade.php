@@ -224,7 +224,7 @@
 
     function updateUbi() {
         ubi.innerHTML = "";
-        ubi.append(provinces[province.value - 1].innerHTML);
+        ubi.append(provinces[province.value - 1].innerHTML + ", España");
         console.log(provinces[province.value - 1].innerHTML);
     }
 
