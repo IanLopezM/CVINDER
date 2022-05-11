@@ -76,6 +76,10 @@ class EnterpriseController extends Controller
 
     }
 
+    public function check(Enterprise $enterprise) {
+        
+    }
+
     /**
      * Display the specified resource.
      *

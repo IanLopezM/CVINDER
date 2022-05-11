@@ -27,14 +27,14 @@
     .wrapper {
       display: flex;
       align-items: center;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: center;
       width: 100%;
       min-height: 100%;
       padding: 20px;
     }
 
-    #formContent {
+    .formContent {
       -webkit-border-radius: 10px 10px 10px 10px;
       border-radius: 10px 10px 10px 10px;
       background: #fff;
@@ -50,7 +50,9 @@
 
     input[type=button],
     input[type=submit],
-    input[type=reset] {
+    input[type=reset],
+    #iniciaEmpresa,
+    #iniciaWorker {
       background-color: rgba(51, 213, 162, 1);
       border: none;
       color: white;
@@ -74,13 +76,17 @@
 
     input[type=button]:hover,
     input[type=submit]:hover,
-    input[type=reset]:hover {
+    input[type=reset]:hover,
+    #iniciaEmpresa:hover,
+    #iniciaWorker:hover {
       background-color: rgba(51, 213, 162, 1);
     }
 
     input[type=button]:active,
     input[type=submit]:active,
-    input[type=reset]:active {
+    input[type=reset]:active,
+    #iniciaEmpresa:active,
+    #iniciaWorker:active {
       -moz-transform: scale(0.95);
       -webkit-transform: scale(0.95);
       -o-transform: scale(0.95);
@@ -125,16 +131,48 @@
 
 <body class="gradient">
   <div class="wrapper fadeInDown">
-    <div id="formContent">
+    <div class="formContent mr-4">
       <!-- Login Form -->
-      <h2 class="my-4 text-5xl font-bold leading-tight">Inicia Sesión</h2>
-      <form>
+      <h2 class="my-4 text-5xl font-bold leading-tight">Empresa</h2>
+      <form method="POST" action="{{route('enterprise.check')}}" id="formEnterprise">
+        @csrf
         <input type="text" id="user" class="fadeIn second" name="user" placeholder="Usuario">
         <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
-        <input type="submit" class="gradient" value="Inicia Sesión">
+        <button id="iniciaEmpresa" class="gradient">
+          <a href="#">Inicia Sesión
+          </a>
+        </button>
+      </form>
+    </div>
+    <div class="formContent ml-4">
+      <!-- Login Form -->
+      <h2 class="my-4 text-5xl font-bold leading-tight">Trabajador</h2>
+      <form method="POST" action="{{route('worker.check')}}" id="formWorker">
+        <input type="text" id="user" class="fadeIn second" name="user" placeholder="Usuario">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
+        <button id="iniciaWorker" class="gradient">
+          <a href="#">Inicia Sesión
+          </a>
+        </button>
       </form>
     </div>
   </div>
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    var btnIniciarEmpresa = document.getElementById("iniciarEmpresa");
+    var btnIniciarWorker = document.getElementById("iniciarWorker");
+    btnIniciarEmpresa.addEventListener("click", checkEnterprise);
+    btnIniciarWorker.addEventListener("click", checkWorker);
+  });
+
+  function checkEnterprise() {
+
+  }
+
+  function checkWorker() {
+
+  }
+</script>
 
 </html>

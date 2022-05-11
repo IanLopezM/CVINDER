@@ -62,6 +62,10 @@ class WorkerController extends Controller
         //
     }
 
+    public function check(Worker $worker) {
+        
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
