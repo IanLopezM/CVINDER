@@ -79,13 +79,13 @@ class EnterpriseController extends Controller
     {
         $password = DB::select('select password from enterprises where mail = "' . $request["enterprise"] . '"');
         $yourenterprise = DB::select('select * from enterprises where mail = "' . $request["enterprise"] . '"');
+        $province = DB::select('select name from provinces where id = ' . $yourenterprise[0]->province_id);
 
         // return $password["password"];
         // return Hash::check($request["enterprisepwd"], $password[0]->password);
         // return $request["enterprisepwd"];
         if (Hash::check($request["enterprisepwd"], $password[0]->password)) {
-            return redirect()->route('enterprise.profile')
-                ->with('yourenterprise', $yourenterprise);
+            return view('enterprise.profile')->with(['enterprise' => $yourenterprise[0], 'province' => $province[0]]);
         } else {
             return redirect()->route('layouts.login');
         }

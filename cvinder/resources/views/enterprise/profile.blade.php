@@ -189,14 +189,10 @@
         </div>
         <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
             <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
-                <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold">{{$yourenterprise}}</h1>
-                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold">Tarragona, España</h4>
+                <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold">{{$enterprise->name}}</h1>
+                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold">{{$province->name}}, España</h4>
                 <h5 class="text-blue-800 ml-10 mt-6 mr-12 text-xl font-extrabold leading-8">
-                    DOIT es una empresa que diseña, fabrica e instala material para la estimulación sensorial, multisensorial o snoezelen en España. Todos nuestros productos se adaptan en todo lo posible a las necesidades de nuestros clientes. Nuestra materia prima es de procedencia de la UE, por lo que garantizamos un producto final de gran calidad y durabilidad.
-
-                    En DOIT, mejoramos constantemente nuestros productos acorde a les últimas tendencias dentro del campo de la estimulación multisensorial. Nuestras soluciones van dirigidas a Centros de Educación Especial, centros socio-sanitarios, guarderías, escuelas ordinarias, unidades de lesiones cerebrales, cuidados paliativos… Entre un larga lista, en las que podemos aplicar las terapias multisensoriales.
-
-                    Nuestra tecnología la desarrollamos conjuntamente en colaboración de prestigiosos profesionales del ámbito de la terapia snoezelen. Trabajamos a diario para desarrollar nuevos productos y un nuevo software que mejoren los resultados de la terapia multisensorial y faciliten también el trabajo de los terapeutas.Nuestra tecnología la desarrollamos conjuntamente en colaboración de prestigiosos profesionales del ámbito de la terapia snoezelen. Trabajamos a diario para desarrollar nuevos productos y mbito de la terapia snoezelen. Trabajamos a diario paaa
+                    {{$enterprise->description}}
                 </h5>
             </div>
         </div>
