@@ -52,11 +52,12 @@ class EnterpriseController extends Controller
      */
     public function store(StoreEnterpriseRequest $request)
     {
-        $userExists = DB::select('select * from enterprises where name = "' . $request["user"] . '"');
+        $userExists = DB::select('select * from enterprises where mail = "' . $request["mail"] . '"');
 
         if ($userExists == null) {
             $enterprise = new Enterprise();
             $enterprise->name = $request["user"];
+            $enterprise->mail = $request["mail"];
             $enterprise->password = Hash::make($request["pwd"]);
             $enterprise->description = $request["desc"];
             $enterprise->province_id = $request["province"];
