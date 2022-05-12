@@ -81,24 +81,28 @@ class EnterpriseController extends Controller
     {
         $password = DB::select('select password from enterprises where mail = "' . $request["enterprise"] . '"');
         $yourenterprise = DB::select('select * from enterprises where mail = "' . $request["enterprise"] . '"');
-        $enterprise = Enterprise::find($yourenterprise[0]->id);
-        $province = Province::find($yourenterprise[0]->province_id);
+        if ($yourenterprise != null) {
+            $enterprise = Enterprise::find($yourenterprise[0]->id);
+            $province = Province::find($yourenterprise[0]->province_id);
 
-        $provinces = Province::all();
-        //var enterprise contiene la empresa, var province contiene la provincia, var provinces contiene todas las provincias
+            $provinces = Province::all();
+            //var enterprise contiene la empresa, var province contiene la provincia, var provinces contiene todas las provincias
 
-        // return $password["password"];
-        // return Hash::check($request["enterprisepwd"], $password[0]->password);
-        // return $request["enterprisepwd"];
-        if (Hash::check($request["enterprisepwd"], $password[0]->password)) {
-            if ($enterprise->firstTime == 1) {
-                $sectors = Sector::all();
-                $skills = Skill::all();
-                return view('offer.form')
-                    ->with(['enterprise' => $enterprise, 'sectors' => $sectors, 'skills' => $skills]);
+            // return $password["password"];
+            // return Hash::check($request["enterprisepwd"], $password[0]->password);
+            // return $request["enterprisepwd"];
+            if (Hash::check($request["enterprisepwd"], $password[0]->password)) {
+                if ($enterprise->firstTime == 1) {
+                    $sectors = Sector::all();
+                    $skills = Skill::all();
+                    return view('offer.form')
+                        ->with(['enterprise' => $enterprise, 'sectors' => $sectors, 'skills' => $skills]);
+                } else {
+                    return view('enterprise.profile')
+                        ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
+                }
             } else {
-            return view('enterprise.profile')
-                ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
+                return redirect()->route('layouts.login');
             }
         } else {
             return redirect()->route('layouts.login');
@@ -127,18 +131,18 @@ class EnterpriseController extends Controller
 
         if ($request["user"] != "") {
             DB::table('enterprises')
-            ->where('mail', $request["mail"])
-            ->update(['name' => $request["user"]]);
+                ->where('mail', $request["mail"])
+                ->update(['name' => $request["user"]]);
         }
         if ($request["desc"] != "") {
             DB::table('enterprises')
-            ->where('mail', $request["mail"])
-            ->update(['description' => $request["desc"]]);
+                ->where('mail', $request["mail"])
+                ->update(['description' => $request["desc"]]);
         }
         if ($request["province"] != "") {
             DB::table('enterprises')
-            ->where('mail', $request["mail"])
-            ->update(['province_id' => $request["province"]]);
+                ->where('mail', $request["mail"])
+                ->update(['province_id' => $request["province"]]);
         }
 
 

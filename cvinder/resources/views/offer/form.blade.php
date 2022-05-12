@@ -130,7 +130,7 @@
                     </li>
                     <br>
                     <li class="relative px-2">
-                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Title {{$enterprise->id}}</p>
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Titulo</p>
                         <input type="text" id="offerTitle" name="offerTitle" placeholder="Nombre" maxlength="30">
                     </li>
                     <input type="hidden" id="enterpriseid" name="enterpriseid" value="{{$enterprise->id}}">
@@ -179,10 +179,10 @@
                 </div>
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
-                <button id="guardar" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-24">
-                    <a href="#">Guardar
+                <div id="guardar" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-16">
+                    <a href="#">Crear
                     </a>
-                </button>
+                </div>
             </div>
         </form>
     </div>
@@ -233,9 +233,9 @@
                 containerSkills.innerHTML += '<div id="skill' + skillselector[skillselector.value - 1].value + '" onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block">' +
                     '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + '<i class="far fa-edit"></i>' +
                     '</a><input name="myskills[]" type="hidden" value="' + skillselector[skillselector.value - 1].value + '"></input></div>';
-                
+
                 curSkills.innerHTML += '<div class="skill' + skillselector[skillselector.value - 1].value + ' mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">' +
-                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + 
+                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML +
                     '</a></div>';
             }
         }
@@ -244,7 +244,7 @@
     function deleteSkill(element) {
         console.log(element);
         totalSkills--;
-        
+
         var elemid = element.id;
         var elem = document.getElementsByClassName(elemid)[0];
 
@@ -270,7 +270,9 @@
     }
 
     function saveOffer() {
-        if (totalSkills != 0 && offerTitle.value != null && offerSector.value != null && offerDesc.value != null) {
+        if ((totalSkills != 0) && (offerTitle.value != null && offerTitle != "") &&
+            (offerSector.value != null && offerSector.value != "") &&
+            (offerDesc.value != null && offerDesc.value != "")) {
             form.submit();
         }
     }
