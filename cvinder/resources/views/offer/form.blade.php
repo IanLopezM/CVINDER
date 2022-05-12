@@ -147,16 +147,13 @@
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Skills</p>
-                        <select name="sector" id="sector">
+                        <select name="skill" id="skill">
                             @foreach ($skills as $skill)
                             <option value="{{$skill->id}}">{{$skill->name}}</option>
                             @endforeach
                         </select>
-                        <div class="mt-2 mr-2 inline-block">
-                            <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
-                                <a href="#" class="bgtransp">a<i class='far fa-edit'></i>
-                                </a>
-                            </button>
+                        <div class="mt-2 mr-2 inline-block" id="containerSkills">
+
                         </div>
                     </li>
                     <br>
@@ -188,6 +185,8 @@
     </div>
 </body>
 <script>
+    var totalSkills;
+
     var user = document.getElementById("user");
     var title = document.getElementById("title");
 
@@ -199,21 +198,44 @@
 
     var province = document.getElementById("province");
     var ubi = document.getElementById("ubi");
-    var provinces = province.children;
+    // var provinces = province.children;
 
     var btnGuardar = document.getElementById("guardar");
 
     var form = document.getElementById("formEnterprise");
 
+    var skillselector = document.getElementById("skill");
+    console.log(skillselector);
+    var containerSkills = document.getElementById("containerSkills");
+
     document.addEventListener('DOMContentLoaded', function(event) {
-        user.addEventListener("keyup", updateUser);
-        user.addEventListener("change", updateUser);
-        desc.addEventListener("keyup", updateDesc);
-        desc.addEventListener("change", updateDesc);
-        province.addEventListener("keyup", updateUbi);
-        province.addEventListener("change", updateUbi);
-        btnGuardar.addEventListener("click", saveEnterprise);
+        // user.addEventListener("keyup", updateUser);
+        // user.addEventListener("change", updateUser);
+        // desc.addEventListener("keyup", updateDesc);
+        // desc.addEventListener("change", updateDesc);
+        // province.addEventListener("keyup", updateUbi);
+        // province.addEventListener("change", updateUbi);
+        // btnGuardar.addEventListener("click", saveEnterprise);
+        totalSkills = 0;
+        skillselector.addEventListener("change", addSkill);
+
     });
+
+    function addSkill() {
+        console.log(containerSkills.children)
+        // console.log(skillselector[skillselector.value-1].value)
+        // console.log(skillselector[skillselector.value-1].innerHTML)
+        if (totalSkills < 6) {
+            containerSkills.innerHTML += '<div onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">' +
+                '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + '<i class="far fa-edit"></i>' +
+                '</a><input name="myskills[]" type="hidden" value="' + skillselector[skillselector.value - 1].value + '"></input></div>';
+        }
+    }
+
+    function deleteSkill(element) {
+        console.log(element);
+        element.parentNode.removeChild(element);
+    }
 
     function updateUser() {
         title.innerHTML = "";
