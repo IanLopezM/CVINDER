@@ -176,10 +176,10 @@
                 </div>
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
-                <button id="guardar" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-24">
-                    <a href="#">Guardar
+                <div id="guardar" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-16">
+                    <a href="#">Crear
                     </a>
-                </button>
+                </div>
             </div>
         </form>
     </div>
@@ -229,7 +229,10 @@
     }
 
     function saveEnterprise() {
-        if (user.value != null && mail.value != null && desc.value != null && province.value != null && pwd.value != null && pwd.value.length > 8) {
+        if ((user.value != null && user.value != "") && (mail.value != null && mail.value != "") &&
+            (desc.value != null && desc.value != "") && (province.value != null && province.value != "") &&
+            (pwd.value != null && pwd.value.length > 8)) {
+            console.log("ENTRA");
             form.submit();
         }
     }

@@ -19,7 +19,7 @@ use App\Http\Controllers\Controller;
 */
 
 Route::get('/', function () {
-    return view('welcome');                                                                                 //done(interficie)
+    return view('welcome');                                                                                 //done(interficie) half(functioning)
 })->name("welcome");
 
 Route::middleware([
@@ -32,7 +32,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get("/layouts/login", [Controller::class, "login"])->name("layouts.login");                          //done(interficie)
+Route::get("/layouts/login", [Controller::class, "login"])->name("layouts.login");                          //done(interficie) half(functioning)
 
 Route::get("/worker", [WorkerController::class, "index"])->name("worker.index");                            //
 Route::get("/worker/profile", [WorkerController::class, "profile"])->name("worker.profile");                //done(interficie)
@@ -41,7 +41,7 @@ Route::get("/worker/form", [WorkerController::class, "form"])->name("worker.form
 Route::get("/worker/check", [WorkerController::class, "check"])->name("worker.check");                      //
 
 Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->name("enterprise.profile");    //done(interficie)
-Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");             //done(interficie) done(functioning)
+Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");             //done(interficie) done(functioning)    ENDED
 Route::post("/enterprise/store", [EnterpriseController::class, "store"])->name("enterprise.store");         //DOING
 Route::post("/enterprise/check", [EnterpriseController::class, "check"])->name("enterprise.check");         //DOING
 Route::post("/enterprise/edit", [EnterpriseController::class, "edit"])->name("enterprise.edit");            //DOING
