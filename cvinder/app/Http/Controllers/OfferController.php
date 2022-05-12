@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\Enterprise;
+use App\Models\Province;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
+use App\Models\OfferSkill;
 
 class OfferController extends Controller
 {
@@ -47,7 +51,27 @@ class OfferController extends Controller
      */
     public function store(StoreOfferRequest $request)
     {
-        //
+        $offer = new Offer();
+        $offer->title = $request["offerTitle"];
+        $offer->description = $request["desc"];
+        $offer->sector_id = $request["sector"];
+        $offer->enterprise_id = $request["enterpriseid"];
+        $offer->save();
+
+        foreach($request['myskills'] as $key => $skillnow){
+            $skill = new OfferSkill();
+            $skill->skill_id = $skillnow;
+            $skill->offer_id = $offer->id;
+            $skill->save();
+        }
+
+        $enterprise = Enterprise::find($request["enterpriseid"]);
+        $province = Province::find($enterprise->province_id);
+        $provinces = Province::all();
+
+        return view('enterprise.profile')
+                ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
+
     }
 
     /**

@@ -105,7 +105,7 @@
 
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
     <div>
-        <form method="POST" action="{{route('enterprise.store')}}" id="formEnterprise">
+        <form method="POST" action="{{route('offer.store')}}" id="formOffer">
             @csrf
             <div class="float-left w-1/5 shadow-md bg-white overflow-auto" style="height: 100vh">
                 <ul class="relative">
@@ -124,13 +124,16 @@
                                 <path stroke="#265BFF" stroke-linecap="round" stroke-width="1.5" d="M10 8.973h4m-4 3.64h2" style="animation:check 3s infinite cubic-bezier(.99,-.1,.01,1.02)" stroke-dashoffset="100" stroke-dasharray="100" />
                             </svg>
                             CVINDER
+                            <p class="text-BLACK-800 ml-10 mr-12 text-xl font-extrabold leading-8">Tu Primera Oferta</p>
+
                         </a>
                     </li>
                     <br>
                     <li class="relative px-2">
-                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Title</p>
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Title {{$enterprise->id}}</p>
                         <input type="text" id="offerTitle" name="offerTitle" placeholder="Nombre" maxlength="30">
                     </li>
+                    <input type="hidden" id="enterpriseid" name="enterpriseid" value="{{$enterprise->id}}">
                     <br>
                     <hr>
                     <br>
@@ -161,18 +164,18 @@
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
-                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
+                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="Descripción" maxlength="800"></textarea>
                     </li>
                     <br>
                     <hr>
-                    <input type="hidden" id="needOffer" name="needOffer" value="needOffer">
                 </ul>
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
                 <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
                     <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="title"></h1>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="ubi"></h4>
-                    <h5 class="text-blue-800 ml-10 mt-6 mr-12 text-xl font-extrabold leading-8" id="bodydesc"></h5>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold" id="cursector"></h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curskills"></h4>
+                    <h5 class="text-blue-800 ml-10 mt-6 mr-12 text-xl font-extrabold leading-8" id="curdesc"></h5>
                 </div>
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
@@ -186,60 +189,79 @@
 </body>
 <script>
     var totalSkills;
+    var firstSkill = 0;
 
-    var user = document.getElementById("user");
-    var title = document.getElementById("title");
+    var offerTitle = document.getElementById("offerTitle");
+    var curTitle = document.getElementById("title");
 
-    var mail = document.getElementById("mail");
-    var pwd = document.getElementById("pwd");
+    var offerSector = document.getElementById("sector");
+    var curSector = document.getElementById("cursector");
 
-    var desc = document.getElementById("desc");
-    var bodydesc = document.getElementById("bodydesc");
-
-    var province = document.getElementById("province");
-    var ubi = document.getElementById("ubi");
-    // var provinces = province.children;
-
-    var btnGuardar = document.getElementById("guardar");
-
-    var form = document.getElementById("formEnterprise");
+    var offerDesc = document.getElementById("desc");
+    var bodydesc = document.getElementById("curdesc");
 
     var skillselector = document.getElementById("skill");
-    console.log(skillselector);
+    var curSkills = document.getElementById("curskills");
     var containerSkills = document.getElementById("containerSkills");
 
+    var btnGuardar = document.getElementById("guardar");
+    var form = document.getElementById("formOffer");
+
     document.addEventListener('DOMContentLoaded', function(event) {
-        // user.addEventListener("keyup", updateUser);
-        // user.addEventListener("change", updateUser);
-        // desc.addEventListener("keyup", updateDesc);
-        // desc.addEventListener("change", updateDesc);
-        // province.addEventListener("keyup", updateUbi);
-        // province.addEventListener("change", updateUbi);
-        // btnGuardar.addEventListener("click", saveEnterprise);
+        offerTitle.addEventListener("keyup", updateTitle);
+        offerTitle.addEventListener("change", updateTitle);
+        offerSector.addEventListener("keyup", updateSector);
+        offerSector.addEventListener("change", updateSector);
+        offerDesc.addEventListener("keyup", updateDesc);
+        offerDesc.addEventListener("change", updateDesc);
         totalSkills = 0;
         skillselector.addEventListener("change", addSkill);
-
+        btnGuardar.addEventListener("click", saveOffer);
     });
 
     function addSkill() {
+        if (firstSkill == 0) {
+            firstSkill = 1;
+            curSkills.innerHTML = "Skills Necesarias: "
+        }
         console.log(containerSkills.children)
         // console.log(skillselector[skillselector.value-1].value)
         // console.log(skillselector[skillselector.value-1].innerHTML)
         if (totalSkills < 6) {
-            containerSkills.innerHTML += '<div onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">' +
-                '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + '<i class="far fa-edit"></i>' +
-                '</a><input name="myskills[]" type="hidden" value="' + skillselector[skillselector.value - 1].value + '"></input></div>';
+            if (document.getElementById("skill" + skillselector[skillselector.value - 1].value) == null) {
+                totalSkills++;
+                containerSkills.innerHTML += '<div id="skill' + skillselector[skillselector.value - 1].value + '" onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block">' +
+                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + '<i class="far fa-edit"></i>' +
+                    '</a><input name="myskills[]" type="hidden" value="' + skillselector[skillselector.value - 1].value + '"></input></div>';
+                
+                curSkills.innerHTML += '<div class="skill' + skillselector[skillselector.value - 1].value + ' mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">' +
+                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + 
+                    '</a></div>';
+            }
         }
     }
 
     function deleteSkill(element) {
         console.log(element);
+        totalSkills--;
+        
+        var elemid = element.id;
+        var elem = document.getElementsByClassName(elemid)[0];
+
+        console.log(elemid)
+        console.log(elem);
         element.parentNode.removeChild(element);
+        elem.parentNode.removeChild(elem);
     }
 
-    function updateUser() {
-        title.innerHTML = "";
-        title.append(user.value);
+    function updateTitle() {
+        curTitle.innerHTML = "";
+        curTitle.append(offerTitle.value);
+    }
+
+    function updateSector() {
+        curSector.innerHTML = "";
+        curSector.append(offerSector[offerSector.value - 1].innerHTML);
     }
 
     function updateDesc() {
@@ -247,14 +269,8 @@
         bodydesc.append(desc.value);
     }
 
-    function updateUbi() {
-        ubi.innerHTML = "";
-        ubi.append(provinces[province.value - 1].innerHTML + ", España");
-        console.log(provinces[province.value - 1].innerHTML);
-    }
-
-    function saveEnterprise() {
-        if (user.value != null && mail.value != null && desc.value != null && province.value != null && pwd.value != null && pwd.value.length > 8) {
+    function saveOffer() {
+        if (totalSkills != 0 && offerTitle.value != null && offerSector.value != null && offerDesc.value != null) {
             form.submit();
         }
     }

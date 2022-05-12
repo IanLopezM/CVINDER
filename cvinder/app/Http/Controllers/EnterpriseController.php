@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Enterprise;
 use App\Models\Province;
-use App\Models\Offer;
 use App\Models\Sector;
 use App\Models\Skill;
 use Illuminate\Support\Facades\DB;
