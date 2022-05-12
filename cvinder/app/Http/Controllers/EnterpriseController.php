@@ -125,9 +125,22 @@ class EnterpriseController extends Controller
     public function edit(StoreEnterpriseRequest $request)
     {
 
-        DB::table('enterprises')
+        if ($request["user"] != "") {
+            DB::table('enterprises')
             ->where('mail', $request["mail"])
-            ->update(['name' => $request["user"], 'description' => $request["desc"], 'province_id' => $request["province"]]);
+            ->update(['name' => $request["user"]]);
+        }
+        if ($request["desc"] != "") {
+            DB::table('enterprises')
+            ->where('mail', $request["mail"])
+            ->update(['description' => $request["desc"]]);
+        }
+        if ($request["province"] != "") {
+            DB::table('enterprises')
+            ->where('mail', $request["mail"])
+            ->update(['province_id' => $request["province"]]);
+        }
+
 
         $yourenterprise = DB::select('select * from enterprises where mail = "' . $request["mail"] . '"');
         // dd( $request);

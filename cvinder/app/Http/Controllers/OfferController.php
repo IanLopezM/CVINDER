@@ -66,6 +66,8 @@ class OfferController extends Controller
         }
 
         $enterprise = Enterprise::find($request["enterpriseid"]);
+        $enterprise->firstTime = false;
+        $enterprise->save();
         $province = Province::find($enterprise->province_id);
         $provinces = Province::all();
 

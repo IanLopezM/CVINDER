@@ -158,7 +158,7 @@
                         @foreach ($enterprise->offers as $offer)
                         <div class="mt-2 mr-2 inline-block">
                             <button id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
-                                <a href="#" class="bgtransp">$offer->title<i class='far fa-edit'></i>
+                                <a href="#" class="bgtransp">{{$offer->title}}<i class='far fa-edit'></i>
                                 </a>
                             </button>
                         </div>
@@ -250,7 +250,8 @@
     }
 
     function editEnterprise() {
-        if (user.value != null && mail.value != null && desc.value != null && province.value != null) {
+        if (user.value != null && user.value != "" && mail.value != null && desc.value != null && province.value != null) {
+            console.log("a"+user.value+"a");
             form.submit();
         }
     }
