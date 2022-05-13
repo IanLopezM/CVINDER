@@ -7,10 +7,10 @@ use App\Models\Enterprise;
 use App\Models\Province;
 use App\Models\Sector;
 use App\Models\Skill;
+use App\Models\OfferSkill;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
-use App\Models\OfferSkill;
 
 class OfferController extends Controller
 {
@@ -109,9 +109,40 @@ class OfferController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Offer $offer)
+    public function edit(StoreOfferRequest $request)
     {
-        dd("hola");
+        // dd($request);
+//DOOOOOOOOOOOOOING
+        if ($request["offerTitle"] != null) {
+            DB::table('offers')
+                ->where('id', $request["offerid"])
+                ->update(['title' => $request["offerTitle"]]);
+        }
+        if ($request["desc"] != null) {
+            DB::table('offers')
+                ->where('id', $request["offerid"])
+                ->update(['title' => $request["desc"]]);
+        }
+
+        DB::table('offers')
+        ->where('id', $request["offerid"])
+        ->update(['sector_id' => $request["sector"]]);
+
+        $skillsofferstodelete = OfferSkill::where("offer_id", "=", $request["offerid"]);
+
+        foreach($request["myskills"] as $key => $skillnow) {
+            $thisskill = new OfferSkill();
+            $thisskill->skill_id = $skillnow;
+            $thisskill->offer_id = $request["offerid"];
+            $thisskill->save();
+        }
+
+        $enterprise = Enterprise::find($request["enterpriseid"]);
+        $province = Province::find($enterprise->province_id);
+        $provinces = Province::all();
+        
+        return view('enterprise.profile')
+            ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
     }
 
     /**

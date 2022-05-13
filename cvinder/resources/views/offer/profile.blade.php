@@ -132,6 +132,7 @@
                         <input type="text" id="offerTitle" name="offerTitle" placeholder="{{$offer->title}}" maxlength="30">
                     </li>
                     <input type="hidden" id="enterpriseid" name="enterpriseid" value="{{$enterprise->id}}">
+                    <input type="hidden" id="offerid" name="offerid" value="{{$offer->id}}">
                     <br>
                     <hr>
                     <br>
@@ -155,9 +156,9 @@
                         </select>
                         <div class="mt-2 mr-2 inline-block" id="containerSkills">
                             @foreach ($offerskills as $offerskill)
-                            <div id="skill{{$skills[$offerskill->skill_id]->id}}" onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block">
-                                <a href="#" class="bgtransp">{{$skills[$offerskill->skill_id]->name}}<i class="far fa-edit"></i>
-                                </a><input name="myskills[]" type="hidden" value="{{$skills[$offerskill->skill_id]->value}}"></input>
+                            <div id="skill{{$skills[$offerskill->skill_id - 1]->id}}" onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block">
+                                <a href="#" class="bgtransp">{{$skills[$offerskill->skill_id - 1]->name}}<i class="far fa-edit"></i>
+                                </a><input name="myskills[]" type="hidden" value="{{$skills[$offerskill->skill_id - 1]->id}}"></input>
                             </div>
                             @endforeach
                         </div>
@@ -167,7 +168,7 @@
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
-                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="{{$offer->description}}" maxlength="800"></textarea>
+                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="{{$offer->description}}" value="{{$offer->description}}" maxlength="800"></textarea>
                     </li>
                     <br>
                     <hr>
@@ -180,8 +181,8 @@
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curskills">
                         Skills Necesarias:
                         @foreach ($offerskills as $offerskill)
-                        <div class="skill{{$skills[$offerskill->skill_id]->id}} mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">
-                            <a href="#" class="bgtransp">{{$skills[$offerskill->skill_id]->name}}</a>
+                        <div class="skill{{$skills[$offerskill->skill_id-1]->id}} mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">
+                            <a href="#" class="bgtransp">{{$skills[$offerskill->skill_id - 1]->name}}</a>
                         </div>
                         @endforeach
                     </h4>
@@ -190,7 +191,7 @@
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
                 <div id="guardar" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-16">
-                    <a href="#">Crear
+                    <a href="#">Guardar
                     </a>
                 </div>
             </div>
@@ -280,8 +281,7 @@
 
     function saveOffer() {
         if ((totalSkills != 0) && (offerTitle.value != null && offerTitle != "") &&
-            (offerSector.value != null && offerSector.value != "") &&
-            (offerDesc.value != null && offerDesc.value != "")) {
+            (offerSector.value != null && offerSector.value != "")) {
             form.submit();
         }
     }
