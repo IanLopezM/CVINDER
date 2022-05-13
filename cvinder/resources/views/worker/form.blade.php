@@ -133,15 +133,22 @@
                 <hr>
                 <br>
                 <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Apellidos</p>
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Apellido</p>
                     <input type="text" id="user" name="user" placeholder="Apellido" maxlength="30">
                 </li>
                 <br>
                 <hr>
                 <br>
                 <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Numero</p>
-                    <input type="text" id="user" name="user" placeholder="Numero" maxlength="30">
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Mail</p>
+                    <input type="text" id="mail" name="mail" placeholder="empresa@gmail.com" maxlength="30">
+                </li>
+                <br>
+                <hr>
+                <br>
+                <li class="relative px-2">
+                    <label class="text-gray-800 font-bold text-xl mb-2 px-2">Contraseña</label>
+                    <input type="password" id="pwd" name="pwd" placeholder="password" minlength="8">
                 </li>
                 <br>
                 <hr>
@@ -161,23 +168,11 @@
                         <option>Madrid</option>
                     </select>
                 </li>
-                <br>
-                <hr>
-                <br>
-                <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
-                    <textarea id="desc" name="desc" rows="10" cols="20" placeholder="Descripción" maxlength="1300"></textarea>
-                </li>
-                <br>
-                <hr>
-                <br>
-                <li class="relative px-2">
-                </li>
             </ul>
         </div>
         <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
             <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
-                
+
             </div>
         </div>
         <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">

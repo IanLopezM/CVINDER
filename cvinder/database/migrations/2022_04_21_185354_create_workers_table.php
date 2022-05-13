@@ -20,9 +20,7 @@ class CreateWorkersTable extends Migration
             $table->string('password');
             $table->integer('age');
             $table->text('address');
-            $table->string('phone');
-            $table->text('description');
-            $table->boolean('is_admin')->default(false);
+            $table->string('mail')->unique();
             $table->boolean('first_time')->default(true);
             $table->foreignId('province_id')->constrained();
             $table->timestamps();
