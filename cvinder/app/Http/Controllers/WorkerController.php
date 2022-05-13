@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Worker;
+use App\Models\Province;
 use App\Http\Requests\StoreWorkerRequest;
 use App\Http\Requests\UpdateWorkerRequest;
 
@@ -33,7 +34,10 @@ class WorkerController extends Controller
     }
 
     public function form() {
-        return view('worker.form');
+        $provinces = Province::all();
+
+        return view('worker.form')
+            ->with('provinces', $provinces);
     }
 
     public function matches() {

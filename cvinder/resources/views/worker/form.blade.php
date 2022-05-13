@@ -134,44 +134,75 @@
                 <br>
                 <li class="relative px-2">
                     <p class="text-gray-800 font-bold text-xl mb-2 px-2">Apellido</p>
-                    <input type="text" id="user" name="user" placeholder="Apellido" maxlength="30">
+                    <input type="text" id="lastname" name="lastname" placeholder="Apellido" maxlength="30">
                 </li>
                 <br>
                 <hr>
                 <br>
                 <li class="relative px-2">
                     <p class="text-gray-800 font-bold text-xl mb-2 px-2">Mail</p>
-                    <input type="text" id="mail" name="mail" placeholder="empresa@gmail.com" maxlength="30">
+                    <input type="text" id="mail" name="mail" placeholder="worker@gmail.com" maxlength="30">
                 </li>
                 <br>
                 <hr>
                 <br>
                 <li class="relative px-2">
                     <label class="text-gray-800 font-bold text-xl mb-2 px-2">Contraseña</label>
-                    <input type="password" id="pwd" name="pwd" placeholder="password" minlength="8">
+                    <input type="password" id="pwd" name="pwd" placeholder="Contraseña" minlength="8">
                 </li>
                 <br>
                 <hr>
                 <br>
                 <li class="relative px-2">
-                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Telefono</p>
-                    <input type="text" id="user" name="user" placeholder="Telefono" maxlength="30">
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Direccion</p>
+                    <input type="text" id="address" name="address" placeholder="Direccion" maxlength="30">
+                </li>
+                <br>
+                <hr>
+                <br>
+                <li class="relative px-2">
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Edad</p>
+                    <input type="text" id="edad" name="edad" placeholder="Edad" maxlength="30">
                 </li>
                 <br>
                 <hr>
                 <br>
                 <li class="relative px-2">
                     <p class="text-gray-800 font-bold text-xl mb-2 px-2">Provincia</p>
-                    <select id="provincias">
-                        <option>New York </option>
-                        <option>Bucarest</option>
-                        <option>Madrid</option>
+                    <select name="province" id="province">
+                        @foreach ($provinces as $province)
+                        <option value="{{$province->id}}">{{$province->name}}</option>
+                        @endforeach
                     </select>
+                </li>
+                <br>
+                <hr>
+                <br>
+                <li class="relative px-2">
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Formación <a href="#" class="bgtransp"><i id="itoaddform" class='far fa-plus-square'></i></a></p>
+                    <div id="divformacion" class="mt-2 mr-2 inline-block">
+
+                    </div>
+                </li>
+                <br>
+                <hr>
+                <br>
+                <li class="relative px-2">
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2">Experiencia <a href="#" class="bgtransp"><i id="itoaddexp" class='far fa-plus-square'></i></a></p>
+                    <div id="divexperiencia" class="mt-2 mr-2 inline-block">
+                        <!--    <div id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
+                            <a href="#" class="bgtransp"><i class='far fa-edit'></i></a>
+                        </div>-->
+                    </div>
                 </li>
             </ul>
         </div>
         <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
             <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
+                <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="curname"></h1>
+                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curubi"></h4>
+                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curaddress"></h4>
+                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curage"></h4>
 
             </div>
         </div>
@@ -183,5 +214,119 @@
         </div>
     </div>
 </body>
+<script>
+    var formname;
+    var formlastname;
+    var formmail;
+    var formpwd;
+    var formaddress;
+    var formage;
+    var formprovince;
+    var formdivexp;
+    var formdivform;
+    var itoaddexp;
+    var itoaddform;
+
+    var provinces;
+
+    var curname;
+    var curubi;
+    var curaddress;
+    var curmail;
+    var curage;
+
+    var totalForms = 0;
+    var totalExps = 0;
+
+    document.addEventListener('DOMContentLoaded', function(event) {
+
+        formname = document.getElementById("user");
+        formlastname = document.getElementById("lastname");
+        formmail = document.getElementById("mail");
+        formpwd = document.getElementById("pwd");
+        formaddress = document.getElementById("address");
+        formage = document.getElementById("edad");
+        formprovince = document.getElementById("province");
+
+        formdivexp = document.getElementById("divexperiencia");
+        itoaddexp = document.getElementById("itoaddexp");
+
+        formdivform = document.getElementById("divformacion");
+        itoaddform = document.getElementById("itoaddform");
+
+        curname = document.getElementById("curname");
+        curubi = document.getElementById("curubi");
+        curaddress = document.getElementById("curaddress");
+        curage = document.getElementById("curage");
+
+        provinces = formprovince.children;
+
+        formname.addEventListener("keyup", updateName);
+        formname.addEventListener("change", updateName);
+        formlastname.addEventListener("keyup", updateName);
+        formlastname.addEventListener("change", updateName);
+        formaddress.addEventListener("keyup", updateAddress);
+        formaddress.addEventListener("change", updateAddress);
+        formage.addEventListener("keyup", updateAge);
+        formage.addEventListener("change", updateAge);
+        formprovince.addEventListener("keyup", updateProvince);
+        formprovince.addEventListener("change", updateProvince);
+        itoaddexp.addEventListener("click", addExp);
+        itoaddform.addEventListener("click", addForm);
+    });
+
+    function updateName() {
+        curname.innerHTML = "";
+        curname.append(formname.value + " " + formlastname.value);
+    }
+
+    function updateProvince() {
+        curubi.innerHTML = "";
+        curubi.append(provinces[province.value - 1].innerHTML + ", España");
+    }
+
+    function updateAddress() {
+        curaddress.innerHTML = "";
+        curaddress.append(formaddress.value);
+    }
+
+    function updateAge() {
+        curage.innerHTML = "";
+        curage.append(formage.value);
+    }
+
+    function addExp() {
+        totalExps++;
+        formdivexp.innerHTML += '<div class="gradient mx-auto lg:mx-0 hover:underline font-bold rounded-lg lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 mb-4">' +
+            '<input type="text" name="expUbi[]" placeholder="Ubicación" maxlength="30">' +
+            '<input type="text" name="expCharge[]" placeholder="Titulo" maxlength="30">' +
+            '<input type="text" name="expStart[]" placeholder="Año de inicio" maxlength="30">' +
+            '<input type="text" name="expEnd[]" placeholder="Año de final" maxlength="30"><p><a href="#"><i onclick="deleteThisExp(this)" class="far fa-edit"></i></a></p>' +
+            '</div>';
+    }
+
+    function deleteThisExp(i) {
+        totalExps--;
+        var thediv = i.parentNode.parentNode.parentNode;
+        thediv.parentNode.removeChild(thediv);
+    }
+
+    function addForm() {
+        totalForms++;
+        console.log(formdivform);
+        formdivform.innerHTML += '<div class="gradient mx-auto lg:mx-0 hover:underline font-bold rounded-lg lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 mb-4">' +
+            '<input type="text" name="formUbi[]" placeholder="Ubicación" maxlength="30">' +
+            '<input type="text" name="formTitle[]" placeholder="Titulo" maxlength="30">' +
+            '<input type="text" name="formStart[]" placeholder="Año de inicio" maxlength="30">' +
+            '<input type="text" name="formEnd[]" placeholder="Año de final" maxlength="30"><p><a href="#"><i onclick="deleteThisForm(this)" class="far fa-edit"></i></a></p>' +
+            '</div>';
+    }
+
+    function deleteThisForm(i) {
+        totalForms--;
+        var thediv = i.parentNode.parentNode.parentNode;
+        thediv.parentNode.removeChild(thediv);
+    }
+</script>
 
 </html>
