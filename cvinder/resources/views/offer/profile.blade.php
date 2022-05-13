@@ -105,7 +105,7 @@
 
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
     <div>
-        <form method="POST" action="{{route('enterprise.edit')}}" id="formEnterprise">
+        <form method="POST" action="{{route('offer.store')}}" id="formOffer">
             @csrf
             <div class="float-left w-1/5 shadow-md bg-white overflow-auto" style="height: 100vh">
                 <ul class="relative">
@@ -124,28 +124,24 @@
                                 <path stroke="#265BFF" stroke-linecap="round" stroke-width="1.5" d="M10 8.973h4m-4 3.64h2" style="animation:check 3s infinite cubic-bezier(.99,-.1,.01,1.02)" stroke-dashoffset="100" stroke-dasharray="100" />
                             </svg>
                             CVINDER
+                            <p class="text-BLACK-800 ml-10 mr-12 text-xl font-extrabold leading-8">Tu Primera Oferta</p>
+
                         </a>
                     </li>
                     <br>
                     <li class="relative px-2">
-                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
-                        <input type="text" id="user" name="user" placeholder="{{$enterprise->name}}" maxlength="30">
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Titulo</p>
+                        <input type="text" id="offerTitle" name="offerTitle" placeholder="Nombre" maxlength="30">
                     </li>
+                    <input type="hidden" id="enterpriseid" name="enterpriseid" value="{{$enterprise->id}}">
                     <br>
                     <hr>
                     <br>
                     <li class="relative px-2">
-                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Mail</p>
-                        <input type="text" id="mail" name="mail" placeholder="{{$enterprise->mail}}" value="{{$enterprise->mail}}" maxlength="30" readonly>
-                    </li>
-                    <br>
-                    <hr>
-                    <br>
-                    <li class="relative px-2">
-                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Provincia</p>
-                        <select name="province" id="province">
-                            @foreach ($provinces as $province)
-                            <option value="{{$province->id}}">{{$province->name}}</option>
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Sector</p>
+                        <select name="sector" id="sector">
+                            @foreach ($sectors as $sector)
+                            <option value="{{$sector->id}}">{{$sector->name}}</option>
                             @endforeach
                         </select>
                     </li>
@@ -153,88 +149,130 @@
                     <hr>
                     <br>
                     <li class="relative px-2">
-                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Ofertas <button><a><i class='far fa-plus-square'></i></a></button></p>
-                        <!-- foreach -->
-                        @foreach ($enterprise->offers as $offer)
-                        <div class="mt-2 mr-2 inline-block">
-                            <div id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
-                                {{$offer->title}} <a href="{{route('offer.profile', ['offer'=>$offer])}}" class="bgtransp"><i class='far fa-edit'></i></a>
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Skills</p>
+                        <select name="skill" id="skill">
+                            @foreach ($skills as $skill)
+                            <option value="{{$skill->id}}">{{$skill->name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="mt-2 mr-2 inline-block" id="containerSkills">
+                            @foreach ($offerskills as $offerskill)
+                            <div id="skill{{$skills[$offerskill->skill_id]->id}}" onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block">
+                                <a href="#" class="bgtransp">{{$skills[$offerskill->skill_id]->name}}<i class="far fa-edit"></i>
+                                </a><input name="myskills[]" type="hidden" value="{{$skills[$offerskill->skill_id]->value}}"></input>
                             </div>
+                            @endforeach
                         </div>
-                        @endforeach
-                        <!-- endforeach -->
                     </li>
                     <br>
                     <hr>
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
-                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="Descripción" maxlength="1300">{{$enterprise->description}}</textarea>
+                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="Descripción" maxlength="800"></textarea>
                     </li>
+                    <br>
+                    <hr>
                 </ul>
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
                 <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
-                    <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="title">{{$enterprise->name}}</h1>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="ubi">{{$prov->name}}, España</h4>
-                    <h5 class="text-blue-800 ml-10 mt-6 mr-12 text-xl font-extrabold leading-8" id="bodydesc">
-                        {{$enterprise->description}}
-                    </h5>
+                    <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="title">{{$offer->title}}</h1>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold" id="cursector">{{$sectors[$offer->sector_id]->name}}</h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curskills">
+                        Skills Necesarias:
+                        @foreach ($offerskills as $offerskill)
+                        <div class="skill{{$skills[$offerskill->skill_id]->id}} mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">
+                            <a href="#" class="bgtransp">{{$skills[$offerskill->skill_id]->name}}</a>
+                        </div>
+                        @endforeach
+                    </h4>
+                    <h5 class="text-blue-800 ml-10 mt-6 mr-12 text-xl font-extrabold leading-8" id="curdesc">{{$offer->description}}</h5>
                 </div>
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
-                <button id="guardar" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-24">
-                    <a href="#">Guardar
+                <div id="guardar" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow opacity-75 bg-white text-gray-800 h-16">
+                    <a href="#">Crear
                     </a>
-                </button>
+                </div>
             </div>
         </form>
-
     </div>
 </body>
 <script>
-    console.log("hola");
-    var user;
-    var title;
+    var totalSkills;
+    var firstSkill = 0;
 
-    var mail;
-    var pwd;
+    var offerTitle = document.getElementById("offerTitle");
+    var curTitle = document.getElementById("title");
 
-    var desc;
-    var bodydesc;
+    var offerSector = document.getElementById("sector");
+    var curSector = document.getElementById("cursector");
 
-    var province;
-    var ubi;
-    var provinces;
+    var offerDesc = document.getElementById("desc");
+    var bodydesc = document.getElementById("curdesc");
 
-    var btnGuardar;
+    var skillselector = document.getElementById("skill");
+    var curSkills = document.getElementById("curskills");
+    var containerSkills = document.getElementById("containerSkills");
 
-    var form;
+    var btnGuardar = document.getElementById("guardar");
+    var form = document.getElementById("formOffer");
 
     document.addEventListener('DOMContentLoaded', function(event) {
-        user = document.getElementById("user")
-        title = document.getElementById("title")
-        mail = document.getElementById("mail")
-        desc = document.getElementById("desc");
-        bodydesc = document.getElementById("bodydesc")
-        province = document.getElementById("province")
-        ubi = document.getElementById("ubi")
-        provinces = province.children
-        btnGuardar = document.getElementById("guardar")
-        form = document.getElementById("formEnterprise")
-
-        user.addEventListener("keyup", updateUser);
-        user.addEventListener("change", updateUser);
-        desc.addEventListener("keyup", updateDesc);
-        desc.addEventListener("change", updateDesc);
-        province.addEventListener("keyup", updateUbi);
-        province.addEventListener("change", updateUbi);
-        btnGuardar.addEventListener("click", editEnterprise);
+        offerTitle.addEventListener("keyup", updateTitle);
+        offerTitle.addEventListener("change", updateTitle);
+        offerSector.addEventListener("keyup", updateSector);
+        offerSector.addEventListener("change", updateSector);
+        offerDesc.addEventListener("keyup", updateDesc);
+        offerDesc.addEventListener("change", updateDesc);
+        totalSkills = containerSkills.children.length;
+        skillselector.addEventListener("change", addSkill);
+        btnGuardar.addEventListener("click", saveOffer);
     });
 
-    function updateUser() {
-        title.innerHTML = "";
-        title.append(user.value);
+    function addSkill() {
+        if (firstSkill == 0) {
+            firstSkill = 1;
+        }
+        console.log(containerSkills.children)
+        // console.log(skillselector[skillselector.value-1].value)
+        // console.log(skillselector[skillselector.value-1].innerHTML)
+        if (totalSkills < 6) {
+            if (document.getElementById("skill" + skillselector[skillselector.value - 1].value) == null) {
+                totalSkills++;
+                containerSkills.innerHTML += '<div id="skill' + skillselector[skillselector.value - 1].value + '" onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block">' +
+                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + '<i class="far fa-edit"></i>' +
+                    '</a><input name="myskills[]" type="hidden" value="' + skillselector[skillselector.value - 1].value + '"></input></div>';
+
+                curSkills.innerHTML += '<div class="skill' + skillselector[skillselector.value - 1].value + ' mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">' +
+                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML +
+                    '</a></div>';
+            }
+        }
+    }
+
+    function deleteSkill(element) {
+        console.log(element);
+        totalSkills--;
+
+        var elemid = element.id;
+        var elem = document.getElementsByClassName(elemid)[0];
+
+        console.log(elemid)
+        console.log(elem);
+        element.parentNode.removeChild(element);
+        elem.parentNode.removeChild(elem);
+    }
+
+    function updateTitle() {
+        curTitle.innerHTML = "";
+        curTitle.append(offerTitle.value);
+    }
+
+    function updateSector() {
+        curSector.innerHTML = "";
+        curSector.append(offerSector[offerSector.value - 1].innerHTML);
     }
 
     function updateDesc() {
@@ -242,15 +280,10 @@
         bodydesc.append(desc.value);
     }
 
-    function updateUbi() {
-        ubi.innerHTML = "";
-        ubi.append(provinces[province.value - 1].innerHTML + ", España");
-        console.log(provinces[province.value - 1].innerHTML);
-    }
-
-    function editEnterprise() {
-        if (user.value != null && user.value != "" && mail.value != null && desc.value != null && province.value != null) {
-            console.log("a" + user.value + "a");
+    function saveOffer() {
+        if ((totalSkills != 0) && (offerTitle.value != null && offerTitle != "") &&
+            (offerSector.value != null && offerSector.value != "") &&
+            (offerDesc.value != null && offerDesc.value != "")) {
             form.submit();
         }
     }

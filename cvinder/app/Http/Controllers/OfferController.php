@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\Enterprise;
 use App\Models\Province;
+use App\Models\Sector;
+use App\Models\Skill;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
@@ -42,6 +44,21 @@ class OfferController extends Controller
         return view('offer.matches');
     }
 
+    public function profile(StoreOfferRequest $offer)
+    {
+        // dd($offer["offer"]);
+        $thisoffer = Offer::find($offer["offer"]);
+        // if ($thisoffer->)
+        if ($thisoffer != null) {
+            $enterprise = Enterprise::find($thisoffer["enterprise_id"]);
+            $sectors = Sector::all();
+            $offerskills = DB::select("select * from offer_skills where offer_id = " . $offer["offer"]);
+            // dd($offerskills);
+            $skills = Skill::all();
+            return view('offer.profile')
+                ->with(['offer' => $thisoffer, 'enterprise' => $enterprise, 'sectors' => $sectors, 'skills' => $skills, 'offerskills' => $offerskills]);
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -58,7 +75,7 @@ class OfferController extends Controller
         $offer->enterprise_id = $request["enterpriseid"];
         $offer->save();
 
-        foreach($request['myskills'] as $key => $skillnow){
+        foreach ($request['myskills'] as $key => $skillnow) {
             $skill = new OfferSkill();
             $skill->skill_id = $skillnow;
             $skill->offer_id = $offer->id;
@@ -72,8 +89,7 @@ class OfferController extends Controller
         $provinces = Province::all();
 
         return view('enterprise.profile')
-                ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
-
+            ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
     }
 
     /**

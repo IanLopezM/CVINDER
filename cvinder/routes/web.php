@@ -40,13 +40,14 @@ Route::get("/worker/matches", [WorkerController::class, "matches"])->name("worke
 Route::get("/worker/form", [WorkerController::class, "form"])->name("worker.form");                         //
 Route::get("/worker/check", [WorkerController::class, "check"])->name("worker.check");                      //
 
-Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->name("enterprise.profile");    //done(interficie)
+Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->name("enterprise.profile");    //done(interficie) done(functioning)    ENDED?
 Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");             //done(interficie) done(functioning)    ENDED?
 Route::post("/enterprise/store", [EnterpriseController::class, "store"])->name("enterprise.store");         //**************** done(functioning)    ENDED?
 Route::post("/enterprise/check", [EnterpriseController::class, "check"])->name("enterprise.check");         //**************** done(functioning)    ENDED?
-Route::post("/enterprise/edit", [EnterpriseController::class, "edit"])->name("enterprise.edit");            //DOING
+Route::post("/enterprise/edit", [EnterpriseController::class, "edit"])->name("enterprise.edit");            //
 
 Route::get("/offer", [OfferController::class, "index"])->name("offer.index");                               //
+Route::get("/offer/profile", [OfferController::class, "profile"])->name("offer.profile");                   //
 Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //done(interficie)
 Route::get("/offer/form", [OfferController::class, "form"])->name("offer.form");                            //done(interficie) done(functioning)    ENDED?
 Route::post("/enterprise/profile", [OfferController::class, "store"])->name("offer.store");                 //
