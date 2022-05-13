@@ -105,7 +105,7 @@
 
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
     <div>
-        <form method="POST" action="{{route('offer.store')}}" id="formOffer">
+        <form method="POST" action="{{route('offer.edit')}}" id="formOffer">
             @csrf
             <div class="float-left w-1/5 shadow-md bg-white overflow-auto" style="height: 100vh">
                 <ul class="relative">
@@ -124,14 +124,12 @@
                                 <path stroke="#265BFF" stroke-linecap="round" stroke-width="1.5" d="M10 8.973h4m-4 3.64h2" style="animation:check 3s infinite cubic-bezier(.99,-.1,.01,1.02)" stroke-dashoffset="100" stroke-dasharray="100" />
                             </svg>
                             CVINDER
-                            <p class="text-BLACK-800 ml-10 mr-12 text-xl font-extrabold leading-8">Tu Primera Oferta</p>
-
                         </a>
                     </li>
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Titulo</p>
-                        <input type="text" id="offerTitle" name="offerTitle" placeholder="Nombre" maxlength="30">
+                        <input type="text" id="offerTitle" name="offerTitle" placeholder="{{$offer->title}}" maxlength="30">
                     </li>
                     <input type="hidden" id="enterpriseid" name="enterpriseid" value="{{$enterprise->id}}">
                     <br>
@@ -169,7 +167,7 @@
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Descripción</p>
-                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="Descripción" maxlength="800"></textarea>
+                        <textarea id="desc" name="desc" rows="20" cols="20" placeholder="{{$offer->description}}" maxlength="800"></textarea>
                     </li>
                     <br>
                     <hr>

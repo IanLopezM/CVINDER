@@ -44,12 +44,13 @@ Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->nam
 Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");             //done(interficie) done(functioning)    ENDED?
 Route::post("/enterprise/store", [EnterpriseController::class, "store"])->name("enterprise.store");         //**************** done(functioning)    ENDED?
 Route::post("/enterprise/check", [EnterpriseController::class, "check"])->name("enterprise.check");         //**************** done(functioning)    ENDED?
-Route::post("/enterprise/edit", [EnterpriseController::class, "edit"])->name("enterprise.edit");            //
+Route::post("/enterprise/edit", [EnterpriseController::class, "edit"])->name("enterprise.edit");            //**************** done(functioning)    ENDED?
+Route::post("/enterprise/profile", [OfferController::class, "store"])->name("offer.store");                 //**************** done(functioning)    ENDED?
 
 Route::get("/offer", [OfferController::class, "index"])->name("offer.index");                               //
-Route::get("/offer/profile", [OfferController::class, "profile"])->name("offer.profile");                   //
+Route::get("/offer/profile", [OfferController::class, "profile"])->name("offer.profile");                   //done(interficie)
 Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //done(interficie)
 Route::get("/offer/form", [OfferController::class, "form"])->name("offer.form");                            //done(interficie) done(functioning)    ENDED?
-Route::post("/enterprise/profile", [OfferController::class, "store"])->name("offer.store");                 //
+Route::post("/offer/edit", [OfferController::class, "edit"])->name("offer.edit");                           //NEXT TO DO?
 
 

@@ -111,7 +111,7 @@ class OfferController extends Controller
      */
     public function edit(Offer $offer)
     {
-        //
+        dd("hola");
     }
 
     /**
