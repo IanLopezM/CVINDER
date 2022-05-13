@@ -153,7 +153,7 @@
                     <hr>
                     <br>
                     <li class="relative px-2">
-                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Ofertas <button><a><i class='far fa-plus-square'></i></a></button></p>
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Ofertas <a href="{{route('offer.form', ['enterprise' => $enterprise])}}" class="bgtransp"><i class='far fa-plus-square'></i></a></p>
                         <!-- foreach -->
                         @foreach ($enterprise->offers as $offer)
                         <div class="mt-2 mr-2 inline-block">

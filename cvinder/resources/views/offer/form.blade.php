@@ -124,8 +124,9 @@
                                 <path stroke="#265BFF" stroke-linecap="round" stroke-width="1.5" d="M10 8.973h4m-4 3.64h2" style="animation:check 3s infinite cubic-bezier(.99,-.1,.01,1.02)" stroke-dashoffset="100" stroke-dasharray="100" />
                             </svg>
                             CVINDER
+                            @if($enterprise->firstTime == true)
                             <p class="text-BLACK-800 ml-10 mr-12 text-xl font-extrabold leading-8">Tu Primera Oferta</p>
-
+                            @endif
                         </a>
                     </li>
                     <br>

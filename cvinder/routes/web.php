@@ -48,9 +48,9 @@ Route::post("/enterprise/edit", [EnterpriseController::class, "edit"])->name("en
 Route::post("/enterprise/profile", [OfferController::class, "store"])->name("offer.store");                 //**************** done(functioning)    ENDED?
 
 Route::get("/offer", [OfferController::class, "index"])->name("offer.index");                               //
-Route::get("/offer/profile", [OfferController::class, "profile"])->name("offer.profile");                   //done(interficie)
+Route::get("/offer/profile", [OfferController::class, "profile"])->name("offer.profile");                   //done(interficie) done(functioning)    ENDED?
 Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //done(interficie)
 Route::get("/offer/form", [OfferController::class, "form"])->name("offer.form");                            //done(interficie) done(functioning)    ENDED?
-Route::post("/offer/edit", [OfferController::class, "edit"])->name("offer.edit");                           //NEXT TO DO?
+Route::post("/offer/edit", [OfferController::class, "edit"])->name("offer.edit");                           //**************** done(functioning)    ENDED?
 
 

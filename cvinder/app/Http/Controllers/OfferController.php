@@ -34,9 +34,15 @@ class OfferController extends Controller
         //
     }
 
-    public function form()
+    public function form(StoreOfferRequest $request)
     {
-        return view('offer.form');
+        // dd($request);
+        $enterprise = Enterprise::find($request["enterprise"]);
+        $sectors = Sector::all();
+        $skills = Skill::all();
+
+        return view('offer.form')
+            ->with(['enterprise' => $enterprise, 'sectors' => $sectors, 'skills' => $skills]);
     }
 
     public function matches()
@@ -112,7 +118,6 @@ class OfferController extends Controller
     public function edit(StoreOfferRequest $request)
     {
         // dd($request);
-//DOOOOOOOOOOOOOING
         if ($request["offerTitle"] != null) {
             DB::table('offers')
                 ->where('id', $request["offerid"])
@@ -125,12 +130,12 @@ class OfferController extends Controller
         }
 
         DB::table('offers')
-        ->where('id', $request["offerid"])
-        ->update(['sector_id' => $request["sector"]]);
+            ->where('id', $request["offerid"])
+            ->update(['sector_id' => $request["sector"]]);
 
-        $skillsofferstodelete = OfferSkill::where("offer_id", "=", $request["offerid"]);
+        $skillsofferstodelete = OfferSkill::where("offer_id", "=", $request["offerid"])->delete();
 
-        foreach($request["myskills"] as $key => $skillnow) {
+        foreach ($request["myskills"] as $key => $skillnow) {
             $thisskill = new OfferSkill();
             $thisskill->skill_id = $skillnow;
             $thisskill->offer_id = $request["offerid"];
@@ -140,7 +145,7 @@ class OfferController extends Controller
         $enterprise = Enterprise::find($request["enterpriseid"]);
         $province = Province::find($enterprise->province_id);
         $provinces = Province::all();
-        
+
         return view('enterprise.profile')
             ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
     }
