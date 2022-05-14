@@ -17,8 +17,8 @@ class CreateExperiencesTable extends Migration
             $table->id();
             $table->string('location');
             $table->string('charge');
-            $table->date('yearStart');
-            $table->date('yearEnd');
+            $table->integer('yearStart');
+            $table->integer('yearEnd');
             $table->foreignId('worker_id')->constrained();
             $table->timestamps();
         });

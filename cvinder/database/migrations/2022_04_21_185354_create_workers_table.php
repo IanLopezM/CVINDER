@@ -21,7 +21,6 @@ class CreateWorkersTable extends Migration
             $table->integer('age');
             $table->text('address');
             $table->string('mail')->unique();
-            $table->boolean('first_time')->default(true);
             $table->foreignId('province_id')->constrained();
             $table->timestamps();
         });
