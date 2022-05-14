@@ -38,7 +38,7 @@ Route::get("/worker", [WorkerController::class, "index"])->name("worker.index");
 Route::get("/worker/profile", [WorkerController::class, "profile"])->name("worker.profile");                //done(interficie)
 Route::get("/worker/matches", [WorkerController::class, "matches"])->name("worker.matches");                //done(interficie)
 Route::get("/worker/form", [WorkerController::class, "form"])->name("worker.form");                         //done(interficie) done(functioning)    ENDED?
-Route::post("/worker/check", [WorkerController::class, "check"])->name("worker.check");                     //
+Route::post("/worker/check", [WorkerController::class, "check"])->name("worker.check");                     //**************** done(functioning)    ENDED?
 Route::post("/worker/store", [WorkerController::class, "store"])->name("worker.store");                     //
 
 Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->name("enterprise.profile");    //done(interficie) done(functioning)    ENDED?
