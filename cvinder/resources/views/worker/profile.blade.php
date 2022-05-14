@@ -132,14 +132,14 @@
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
-                        <input type="text" id="user" name="user" placeholder="{{$worker->name}}" maxlength="15">
+                        <input type="text" id="user" name="user" placeholder="{{$worker->name}}" value="{{$worker->name}}" maxlength="15">
                     </li>
                     <br>
                     <hr>
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Apellido</p>
-                        <input type="text" id="lastname" name="lastname" placeholder="{{$worker->surname}}" maxlength="30">
+                        <input type="text" id="lastname" name="lastname" placeholder="{{$worker->surname}}" value="{{$worker->surname}}" maxlength="30">
                     </li>
                     <br>
                     <hr>
@@ -147,6 +147,7 @@
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Mail</p>
                         <input type="text" id="mail" name="mail" placeholder="{{$worker->mail}}" value="{{$worker->mail}}" maxlength="30" readonly>
+                        <input type="hidden" id="workerid" name="workerid" placeholder="{{$worker->id}}" value="{{$worker->id}}" maxlength="30" readonly>
                     </li>
                     <br>
                     <hr>

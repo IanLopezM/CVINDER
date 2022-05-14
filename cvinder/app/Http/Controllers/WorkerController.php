@@ -143,7 +143,68 @@ class WorkerController extends Controller
      */
     public function edit(StoreWorkerRequest $request)
     {
-        dd($request);
+        if ($request["user"] != "") {
+            DB::table('workers')
+                ->where('mail', $request["mail"])
+                ->update(['name' => $request["user"]]);
+        }
+
+        if ($request["lastname"] != "") {
+            DB::table('workers')
+                ->where('mail', $request["mail"])
+                ->update(['surname' => $request["lastname"]]);
+        }
+
+        if ($request["address"] != "") {
+            DB::table('workers')
+                ->where('mail', $request["mail"])
+                ->update(['address' => $request["address"]]);
+        }
+
+        if ($request["edad"] != "") {
+            DB::table('workers')
+                ->where('mail', $request["mail"])
+                ->update(['age' => $request["edad"]]);
+        }
+
+        if ($request["province"] != "") {
+            DB::table('workers')
+                ->where('mail', $request["mail"])
+                ->update(['province_id' => $request["province"]]);
+        }
+
+        $formationsToDelete = Academic::where("worker_id", "=", $request["workerid"])->delete();
+
+        for ($i = 0; $i < count($request["formUbi"]); $i++) {
+            $thisAcademic = new Academic();
+            $thisAcademic->location = $request["formUbi"][$i];
+            $thisAcademic->title = $request["formTitle"][$i];
+            $thisAcademic->yearStart = $request["formStart"][$i];
+            $thisAcademic->yearEnd = $request["formEnd"][$i];
+            $thisAcademic->worker_id = $request["workerid"];
+            $thisAcademic->save();
+        }
+
+        $experiencesToDelete = Experience::where("worker_id", "=", $request["workerid"])->delete();
+
+        for ($i = 0; $i < count($request["expUbi"]); $i++) {
+            $thisExperience = new Experience();
+            $thisExperience->location = $request["expUbi"][$i];
+            $thisExperience->charge = $request["expCharge"][$i];
+            $thisExperience->yearStart = $request["expStart"][$i];
+            $thisExperience->yearEnd = $request["expEnd"][$i];
+            $thisExperience->worker_id = $request["workerid"];
+            $thisExperience->save();
+        }
+
+        $worker = Worker::find($request["workerid"]);
+        $province = Province::find($request["province"]);
+        $provinces = Province::all();
+        $experiences = DB::select("select * from experiences where worker_id = " . $worker->id);
+        $formations = DB::select("select * from academics where worker_id = " . $worker->id);
+
+        return view('worker.profile')
+            ->with(['worker' => $worker, 'provinces' => $provinces, 'prov' => $province, 'experiences' => $experiences, 'formations' => $formations]);
     }
 
     /**

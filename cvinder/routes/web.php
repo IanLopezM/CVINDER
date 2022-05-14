@@ -19,7 +19,7 @@ use App\Http\Controllers\Controller;
 */
 
 Route::get('/', function () {
-    return view('welcome');                                                                                 //done(interficie)
+    return view('welcome');                                                                                 //done(interficie) done(functioning)    ENDED?
 })->name("welcome");
 
 Route::middleware([
@@ -36,11 +36,11 @@ Route::get("/layouts/login", [Controller::class, "login"])->name("layouts.login"
 
 Route::get("/worker", [WorkerController::class, "index"])->name("worker.index");                            //
 Route::get("/worker/profile", [WorkerController::class, "profile"])->name("worker.profile");                //done(interficie) done(functioning)    ENDED?
-Route::get("/worker/matches", [WorkerController::class, "matches"])->name("worker.matches");                //done(interficie) 
+Route::get("/worker/matches", [WorkerController::class, "matches"])->name("worker.matches");                //
 Route::get("/worker/form", [WorkerController::class, "form"])->name("worker.form");                         //done(interficie) done(functioning)    ENDED?
 Route::post("/worker/check", [WorkerController::class, "check"])->name("worker.check");                     //**************** done(functioning)    ENDED?
 Route::post("/worker/store", [WorkerController::class, "store"])->name("worker.store");                     //**************** done(functioning)    ENDED?
-Route::post("/worker/edit", [WorkerController::class, "edit"])->name("worker.edit");                        //**************** 
+Route::post("/worker/edit", [WorkerController::class, "edit"])->name("worker.edit");                        //**************** done(functioning)    ENDED?
 
 Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->name("enterprise.profile");    //done(interficie) done(functioning)    ENDED?
 Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");             //done(interficie) done(functioning)    ENDED?
@@ -51,6 +51,6 @@ Route::post("/enterprise/profile", [OfferController::class, "store"])->name("off
 
 Route::get("/offer", [OfferController::class, "index"])->name("offer.index");                               //
 Route::get("/offer/profile", [OfferController::class, "profile"])->name("offer.profile");                   //done(interficie) done(functioning)    ENDED?
-Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //done(interficie)
+Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //
 Route::get("/offer/form", [OfferController::class, "form"])->name("offer.form");                            //done(interficie) done(functioning)    ENDED?
 Route::post("/offer/edit", [OfferController::class, "edit"])->name("offer.edit");                           //**************** done(functioning)    ENDED?
