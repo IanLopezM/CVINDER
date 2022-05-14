@@ -108,7 +108,7 @@
 
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
     <div>
-        <form method="POST" action="{{route('worker.store')}}" id="formWorker">
+        <form method="POST" action="{{route('worker.edit')}}" id="formWorker">
             @csrf
             <div class="float-left w-1/5 shadow-md bg-white overflow-auto" style="height: 100vh">
                 <ul class="relative">
@@ -132,42 +132,35 @@
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
-                        <input type="text" id="user" name="user" placeholder="Nombre" maxlength="15">
+                        <input type="text" id="user" name="user" placeholder="{{$worker->name}}" maxlength="15">
                     </li>
                     <br>
                     <hr>
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Apellido</p>
-                        <input type="text" id="lastname" name="lastname" placeholder="Apellido" maxlength="30">
+                        <input type="text" id="lastname" name="lastname" placeholder="{{$worker->surname}}" maxlength="30">
                     </li>
                     <br>
                     <hr>
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Mail</p>
-                        <input type="text" id="mail" name="mail" placeholder="worker@gmail.com" maxlength="30">
-                    </li>
-                    <br>
-                    <hr>
-                    <br>
-                    <li class="relative px-2">
-                        <label class="text-gray-800 font-bold text-xl mb-2 px-2">Contraseña</label>
-                        <input type="password" id="pwd" name="pwd" placeholder="Contraseña" minlength="8">
+                        <input type="text" id="mail" name="mail" placeholder="{{$worker->mail}}" value="{{$worker->mail}}" maxlength="30" readonly>
                     </li>
                     <br>
                     <hr>
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Direccion</p>
-                        <input type="text" id="address" name="address" placeholder="Direccion" maxlength="30">
+                        <input type="text" id="address" name="address" placeholder="{{$worker->address}}" maxlength="30">
                     </li>
                     <br>
                     <hr>
                     <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Edad</p>
-                        <input type="text" id="edad" name="edad" placeholder="Edad" maxlength="30">
+                        <input type="text" id="edad" name="edad" placeholder="{{$worker->age}}" maxlength="30">
                     </li>
                     <br>
                     <hr>
@@ -186,7 +179,15 @@
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Formación <a href="#" class="bgtransp"><i id="itoaddform" class='far fa-plus-square'></i></a></p>
                         <div id="divformacion" class="mt-2 mr-2 inline-block">
-
+                            @foreach($formations as $formation)
+                            <div class="gradient mx-auto lg:mx-0 hover:underline font-bold rounded-lg lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 mb-4">
+                                <input type="text" onkeyup="updateForms()" name="formUbi[]" placeholder="{{$formation->location}}" value="{{$formation->location}}" maxlength="30">
+                                <input type="text" onkeyup="updateForms()" name="formTitle[]" placeholder="{{$formation->title}}" value="{{$formation->title}}" maxlength="30">
+                                <input type="number" onkeyup="updateForms()" name="formStart[]" placeholder="{{$formation->yearStart}}" value="{{$formation->yearStart}}" maxlength="30">
+                                <input type="number" onkeyup="updateForms()" name="formEnd[]" placeholder="{{$formation->yearEnd}}" value="{{$formation->yearEnd}}" maxlength="30">
+                                <p><a href="#"><i onclick="deleteThisForm(this)" class="far fa-edit"></i></a></p>
+                            </div>
+                            @endforeach
                         </div>
                     </li>
                     <br>
@@ -195,21 +196,35 @@
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Experiencia <a href="#" class="bgtransp"><i id="itoaddexp" class='far fa-plus-square'></i></a></p>
                         <div id="divexperiencia" class="mt-2 mr-2 inline-block">
-                            <!--    <div id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
-                            <a href="#" class="bgtransp"><i class='far fa-edit'></i></a>
-                        </div>-->
+                            @foreach($experiences as $experience)
+                            <div class="gradient mx-auto lg:mx-0 hover:underline font-bold rounded-lg lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 mb-4">
+                                <input type="text" onkeyup="updateExps()" name="expUbi[]" placeholder="{{$experience->location}}" value="{{$experience->location}}" maxlength="30">
+                                <input type="text" onkeyup="updateExps()" name="expCharge[]" placeholder="{{$experience->charge}}" value="{{$experience->charge}}" maxlength="30">
+                                <input type="number" onkeyup="updateExps()" name="expStart[]" placeholder="{{$experience->yearStart}}" value="{{$experience->yearStart}}" maxlength="30">
+                                <input type="number" onkeyup="updateExps()" name="expEnd[]" placeholder="{{$experience->yearEnd}}" value="{{$experience->yearEnd}}" maxlength="30">
+                                <p><a href="#"><i onclick="deleteThisExp(this)" class="far fa-edit"></i></a></p>
+                            </div>
+                            @endforeach
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 90vh;">
                 <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
-                    <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="curname"></h1>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curubi"></h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curaddress"></h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curage"></h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms"></h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curexps"></h4>
+                    <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="curname">{{$worker->name}} {{$worker->surname}}</h1>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curubi">{{$provinces[$prov->id - 1]->name}}, España</h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curaddress">{{$worker->address}}</h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curage">{{$worker->age}}</h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms">
+                        @foreach($formations as $formatio)
+                            <p>Ubi {{$formatio->location}} titulo {{$formatio->title}} start {{$formatio->yearStart}} end {{$formatio->yearEnd}}</p><br>
+                        @endforeach
+                    </h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curexps">
+                        @foreach($experiences as $experienc)
+                            <p>Ubi {{$experienc->location}} titulo {{$experienc->charge}} start {{$experienc->yearStart}} end {{$experienc->yearEnd}}</p><br>
+                        @endforeach
+                    </h4>
 
                 </div>
             </div>
@@ -245,8 +260,8 @@
     var curforms;
     var curexps;
 
-    var totalForms = 0;
-    var totalExps = 0;
+    var totalForms;
+    var totalExps;
 
     var form;
 
@@ -264,9 +279,11 @@
 
         formdivexp = document.getElementById("divexperiencia");
         itoaddexp = document.getElementById("itoaddexp");
+        totalExps = formdivexp.children.length;
 
         formdivform = document.getElementById("divformacion");
         itoaddform = document.getElementById("itoaddform");
+        totalForms = formdivexp.children.length;
 
         curname = document.getElementById("curname");
         curubi = document.getElementById("curubi");
@@ -359,7 +376,7 @@
         var formStart = document.getElementsByName("formStart[]");
         var formEnd = document.getElementsByName("formEnd[]");
         for (var i = 0; i < totalForms; i++) {
-            curforms.innerHTML += "Ubi " + formUbi[i].value + " titulo " + formTitle[i].value + " start " + formStart[i].value + " end " + formEnd[i].value + "<br>";
+            curforms.innerHTML += "<p>Ubi " + formUbi[i].value + " titulo " + formTitle[i].value + " start " + formStart[i].value + " end " + formEnd[i].value + "</p><br>";
         }
     }
 
@@ -372,15 +389,12 @@
         console.log(totalExps);
 
         for (var i = 0; i < totalExps; i++) {
-            curexps.innerHTML += "Ubi " + expUbi[i].value + " titulo " + expCharge[i].value + " start " + expStart[i].value + " end " + expEnd[i].value + "<br>";
+            curexps.innerHTML += "<p>Ubi " + expUbi[i].value + " titulo " + expCharge[i].value + " start " + expStart[i].value + " end " + expEnd[i].value + "</p><br>";
         }
     }
 
     function saveWorker() {
-        if ((totalExps != 0) && (totalForms != 0) && (formname.value != "" && formname.value != null) &&
-            (formlastname.value != "" && formlastname.value != null) && (formmail.value != "" || formmail.value != null) &&
-            (formpwd.value != "" && formpwd.value != null) && (formaddress.value != "" && formaddress.value != null) &&
-            (!isNaN(formage.value)) && (formprovince.value != "" && formprovince.value != null)) {
+        if ((totalExps != 0) && (totalForms != 0)  && (!isNaN(formage.value)) && (formprovince.value != "" && formprovince.value != null)) {
             console.log(form);
             form.submit();
         }

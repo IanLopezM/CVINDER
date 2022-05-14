@@ -128,7 +128,6 @@ class EnterpriseController extends Controller
      */
     public function edit(StoreEnterpriseRequest $request)
     {
-
         if ($request["user"] != "") {
             DB::table('enterprises')
                 ->where('mail', $request["mail"])

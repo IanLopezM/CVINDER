@@ -141,9 +141,9 @@ class WorkerController extends Controller
      * @param  \App\Models\Worker  $worker
      * @return \Illuminate\Http\Response
      */
-    public function edit(Worker $worker)
+    public function edit(StoreWorkerRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**
