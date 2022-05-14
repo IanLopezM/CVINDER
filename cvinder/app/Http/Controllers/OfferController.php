@@ -74,28 +74,41 @@ class OfferController extends Controller
      */
     public function store(StoreOfferRequest $request)
     {
-        $offer = new Offer();
-        $offer->title = $request["offerTitle"];
-        $offer->description = $request["desc"];
-        $offer->sector_id = $request["sector"];
-        $offer->enterprise_id = $request["enterpriseid"];
-        $offer->save();
+        $checkifexists = DB::select("select * from offers where sector_id = " . $request["sector"] . " & enterprise_id = " . $request["enterpriseid"]);
 
-        foreach ($request['myskills'] as $key => $skillnow) {
-            $skill = new OfferSkill();
-            $skill->skill_id = $skillnow;
-            $skill->offer_id = $offer->id;
-            $skill->save();
+        if ($checkifexists == null) {
+            $offer = new Offer();
+            $offer->title = $request["offerTitle"];
+            $offer->description = $request["desc"];
+            $offer->sector_id = $request["sector"];
+            $offer->enterprise_id = $request["enterpriseid"];
+            $offer->save();
+
+            foreach ($request['myskills'] as $key => $skillnow) {
+                $skill = new OfferSkill();
+                $skill->skill_id = $skillnow;
+                $skill->offer_id = $offer->id;
+                $skill->save();
+            }
+
+            $enterprise = Enterprise::find($request["enterpriseid"]);
+            $enterprise->firstTime = false;
+            $enterprise->save();
+            $province = Province::find($enterprise->province_id);
+            $provinces = Province::all();
+
+            return view('enterprise.profile')
+                ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
+        } else {
+            $enterprise = Enterprise::find($request["enterpriseid"]);
+            $enterprise->firstTime = false;
+            $enterprise->save();
+            $province = Province::find($enterprise->province_id);
+            $provinces = Province::all();
+
+            return view('enterprise.profile')
+                ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
         }
-
-        $enterprise = Enterprise::find($request["enterpriseid"]);
-        $enterprise->firstTime = false;
-        $enterprise->save();
-        $province = Province::find($enterprise->province_id);
-        $provinces = Province::all();
-
-        return view('enterprise.profile')
-            ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
     }
 
     /**
