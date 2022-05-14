@@ -104,18 +104,18 @@ class WorkerController extends Controller
     public function check(StoreWorkerRequest $request)
     {
         $password = DB::select('select password from workers where mail = "' . $request["worker"] . '"');
-        $yourworker = DB::select('select * from enterprises where mail = "' . $request["worker"] . '"');
+        $yourworker = DB::select('select * from workers where mail = "' . $request["worker"] . '"');
 
         if ($yourworker != null) {
-            // $enterprise = Enterprise::find($yourenterprise[0]->id);
-            // $province = Province::find($yourenterprise[0]->province_id);
             $worker = Worker::find($yourworker[0]->id);
             $province = Province::find($yourworker[0]->province_id);
             $provinces = Province::all();
+            $experiences = DB::select("select * from experiences where worker_id = " . $worker->id);
+            $formations = DB::select("select * from academics where worker_id = " . $worker->id);
 
             if (Hash::check($request["workerpwd"], $password[0]->password)) {
                 return view('worker.profile')
-                    ->with(['worker' => $worker, 'provinces' => $provinces, 'prov' => $province]);
+                    ->with(['worker' => $worker, 'provinces' => $provinces, 'prov' => $province, 'experiences' => $experiences, 'formations' => $formations]);
             } else {
                 return redirect()->route('layouts.login');
             }

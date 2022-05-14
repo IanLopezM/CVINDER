@@ -328,6 +328,7 @@
         totalExps--;
         var thediv = i.parentNode.parentNode.parentNode;
         thediv.parentNode.removeChild(thediv);
+        updateExps();
     }
 
     function addForm() {
@@ -348,6 +349,7 @@
         totalForms--;
         var thediv = i.parentNode.parentNode.parentNode;
         thediv.parentNode.removeChild(thediv);
+        updateForms();
     }
 
     function updateForms() {
