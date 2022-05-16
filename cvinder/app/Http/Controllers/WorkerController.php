@@ -6,9 +6,11 @@ use App\Models\Worker;
 use App\Models\Province;
 use App\Models\Academic;
 use App\Models\Experience;
+use App\Models\Skill;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreWorkerRequest;
 use App\Http\Requests\UpdateWorkerRequest;
+use App\Models\SkillWorker;
 use Illuminate\Support\Facades\Hash;
 
 class WorkerController extends Controller
@@ -41,9 +43,10 @@ class WorkerController extends Controller
     public function form()
     {
         $provinces = Province::all();
+        $skills = Skill::all();
 
         return view('worker.form')
-            ->with('provinces', $provinces);
+            ->with(['provinces' => $provinces, 'skills' => $skills]);
     }
 
     public function matches()
@@ -93,6 +96,16 @@ class WorkerController extends Controller
                 $thisExperience->worker_id = $userid[0]->id;
                 $thisExperience->save();
             }
+
+            for ($i = 0; $i < count($request["myskills"]); $i++) {
+                $thisskillworker = new SkillWorker();
+                $thisskillworker->worker_id = $userid[0]->id;
+                $thisskillworker->skill_id = $request["myskills"][$i];
+                $thisskillworker->save();
+            }
+
+
+
             return redirect()->route('welcome');
         } else {
             return redirect()->route('worker.form');
@@ -110,12 +123,14 @@ class WorkerController extends Controller
             $worker = Worker::find($yourworker[0]->id);
             $province = Province::find($yourworker[0]->province_id);
             $provinces = Province::all();
+            $skills = Skill::all();
             $experiences = DB::select("select * from experiences where worker_id = " . $worker->id);
             $formations = DB::select("select * from academics where worker_id = " . $worker->id);
+            $myskills = DB::select("select * from skill_workers where worker_id = " . $worker->id);
 
             if (Hash::check($request["workerpwd"], $password[0]->password)) {
                 return view('worker.profile')
-                    ->with(['worker' => $worker, 'provinces' => $provinces, 'prov' => $province, 'experiences' => $experiences, 'formations' => $formations]);
+                    ->with(['worker' => $worker, 'provinces' => $provinces, 'prov' => $province, 'experiences' => $experiences, 'formations' => $formations, 'skills' => $skills, 'myskills' => $myskills]);
             } else {
                 return redirect()->route('layouts.login');
             }
@@ -200,11 +215,15 @@ class WorkerController extends Controller
         $worker = Worker::find($request["workerid"]);
         $province = Province::find($request["province"]);
         $provinces = Province::all();
+        $skills = Skill::all();
+
         $experiences = DB::select("select * from experiences where worker_id = " . $worker->id);
+        $myskills = DB::select("select * from skill_workers where worker_id = " . $worker->id);
         $formations = DB::select("select * from academics where worker_id = " . $worker->id);
 
+
         return view('worker.profile')
-            ->with(['worker' => $worker, 'provinces' => $provinces, 'prov' => $province, 'experiences' => $experiences, 'formations' => $formations]);
+            ->with(['worker' => $worker, 'provinces' => $provinces, 'prov' => $province, 'experiences' => $experiences, 'formations' => $formations, 'skills' => $skills, 'myskills' => $myskills]);
     }
 
     /**

@@ -184,6 +184,20 @@
                     <hr>
                     <br>
                     <li class="relative px-2">
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Skills</p>
+                        <select name="skill" id="skill">
+                            @foreach ($skills as $skill)
+                            <option value="{{$skill->id}}">{{$skill->name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="mt-2 mr-2 inline-block" id="containerSkills">
+
+                        </div>
+                    </li>
+                    <br>
+                    <hr>
+                    <br>
+                    <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Formación <a href="#" class="bgtransp"><i id="itoaddform" class='far fa-plus-square'></i></a></p>
                         <div id="divformacion" class="mt-2 mr-2 inline-block">
 
@@ -210,6 +224,7 @@
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curage"></h4>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms"></h4>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curexps"></h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curskills"></h4>
 
                 </div>
             </div>
@@ -223,6 +238,9 @@
     </div>
 </body>
 <script>
+    var totalSkills;
+    var firstSkill = 0;
+
     var formname;
     var formlastname;
     var formmail;
@@ -249,6 +267,10 @@
     var totalExps = 0;
 
     var form;
+
+    var skillselector = document.getElementById("skill");
+    var curSkills = document.getElementById("curskills");
+    var containerSkills = document.getElementById("containerSkills");
 
     var btnGuardar = document.getElementById("guardar");
 
@@ -279,6 +301,9 @@
 
         form = document.getElementById("formWorker");
 
+        totalSkills = 0;
+        skillselector.addEventListener("change", addSkill);
+
         formname.addEventListener("keyup", updateName);
         formname.addEventListener("change", updateName);
         formlastname.addEventListener("keyup", updateName);
@@ -293,6 +318,41 @@
         itoaddform.addEventListener("click", addForm);
         btnGuardar.addEventListener("click", saveWorker);
     });
+
+    function addSkill() {
+        if (firstSkill == 0) {
+            firstSkill = 1;
+            curSkills.innerHTML = "Skills Necesarias: "
+        }
+        console.log(containerSkills.children)
+        // console.log(skillselector[skillselector.value-1].value)
+        // console.log(skillselector[skillselector.value-1].innerHTML)
+        if (totalSkills < 6) {
+            if (document.getElementById("skill" + skillselector[skillselector.value - 1].value) == null) {
+                totalSkills++;
+                containerSkills.innerHTML += '<div id="skill' + skillselector[skillselector.value - 1].value + '" onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block">' +
+                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + '<i class="far fa-edit"></i>' +
+                    '</a><input name="myskills[]" type="hidden" value="' + skillselector[skillselector.value - 1].value + '"></input></div>';
+
+                curSkills.innerHTML += '<div class="skill' + skillselector[skillselector.value - 1].value + ' mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">' +
+                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML +
+                    '</a></div>';
+            }
+        }
+    }
+
+    function deleteSkill(element) {
+        console.log(element);
+        totalSkills--;
+
+        var elemid = element.id;
+        var elem = document.getElementsByClassName(elemid)[0];
+
+        console.log(elemid)
+        console.log(elem);
+        element.parentNode.removeChild(element);
+        elem.parentNode.removeChild(elem);
+    }
 
     function updateName() {
         curname.innerHTML = "";

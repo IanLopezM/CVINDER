@@ -199,7 +199,6 @@ class OfferController extends Controller
     {
         //de empresa a trabajador
         $existoffer = DB::select("select * from offer_workers where worker_id = " . $request["workerid"] . " & offer_id = " . $request["offerid"]);
-        return $existoffer;
         if (count($existoffer) > 0) {
             $thisoffer = OfferWorker::find($existoffer[0]->id)->delete();
             if ($thisoffer->worker_ok == false) {

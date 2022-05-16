@@ -178,6 +178,25 @@
                     <hr>
                     <br>
                     <li class="relative px-2">
+                        <p class="text-gray-800 font-bold text-xl mb-2 px-2">Skills</p>
+                        <select name="skill" id="skill">
+                            @foreach ($skills as $skill)
+                            <option value="{{$skill->id}}">{{$skill->name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="mt-2 mr-2 inline-block" id="containerSkills">
+                            @foreach ($myskills as $workerskill)
+                            <div id="skill{{$skills[$workerskill->skill_id - 1]->id}}" onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block">
+                                <a href="#" class="bgtransp">{{$skills[$workerskill->skill_id - 1]->name}}<i class="far fa-edit"></i>
+                                </a><input name="myskills[]" type="hidden" value="{{$skills[$workerskill->skill_id - 1]->id}}"></input>
+                            </div>
+                            @endforeach
+                        </div>
+                    </li>
+                    <br>
+                    <hr>
+                    <br>
+                    <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Formación <a href="#" class="bgtransp"><i id="itoaddform" class='far fa-plus-square'></i></a></p>
                         <div id="divformacion" class="mt-2 mr-2 inline-block">
                             @foreach($formations as $formation)
@@ -218,15 +237,22 @@
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curage">{{$worker->age}}</h4>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms">
                         @foreach($formations as $formatio)
-                            <p>Ubi {{$formatio->location}} titulo {{$formatio->title}} start {{$formatio->yearStart}} end {{$formatio->yearEnd}}</p><br>
+                        <p>Ubi {{$formatio->location}} titulo {{$formatio->title}} start {{$formatio->yearStart}} end {{$formatio->yearEnd}}</p><br>
                         @endforeach
                     </h4>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curexps">
                         @foreach($experiences as $experienc)
-                            <p>Ubi {{$experienc->location}} titulo {{$experienc->charge}} start {{$experienc->yearStart}} end {{$experienc->yearEnd}}</p><br>
+                        <p>Ubi {{$experienc->location}} titulo {{$experienc->charge}} start {{$experienc->yearStart}} end {{$experienc->yearEnd}}</p><br>
                         @endforeach
                     </h4>
-
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curskills">
+                        Skills:
+                        @foreach ($myskills as $myskill)
+                        <div class="skill{{$skills[$myskill->skill_id-1]->id}} mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">
+                            <a href="#" class="bgtransp">{{$skills[$myskill->skill_id - 1]->name}}</a>
+                        </div>
+                        @endforeach
+                    </h4>
                 </div>
             </div>
             <div class="text-gray-800 float-right w-4/5 flex justify-center gradient" style="height: 10vh;">
@@ -266,6 +292,12 @@
 
     var form;
 
+    var totalSkills;
+    var firstSkill = 0;
+    var skillselector;
+    var curSkills;
+    var containerSkills;
+
     var btnGuardar = document.getElementById("guardar");
 
     document.addEventListener('DOMContentLoaded', function(event) {
@@ -281,6 +313,10 @@
         formdivexp = document.getElementById("divexperiencia");
         itoaddexp = document.getElementById("itoaddexp");
         totalExps = formdivexp.children.length;
+
+        skillselector = document.getElementById("skill");
+        curSkills = document.getElementById("curskills");
+        containerSkills = document.getElementById("containerSkills");
 
         formdivform = document.getElementById("divformacion");
         itoaddform = document.getElementById("itoaddform");
@@ -309,8 +345,44 @@
         formprovince.addEventListener("change", updateProvince);
         itoaddexp.addEventListener("click", addExp);
         itoaddform.addEventListener("click", addForm);
+        totalSkills = containerSkills.children.length;
+        skillselector.addEventListener("change", addSkill);
         btnGuardar.addEventListener("click", saveWorker);
     });
+
+    function addSkill() {
+        if (firstSkill == 0) {
+            firstSkill = 1;
+        }
+        console.log(containerSkills.children)
+        // console.log(skillselector[skillselector.value-1].value)
+        // console.log(skillselector[skillselector.value-1].innerHTML)
+        if (totalSkills < 6) {
+            if (document.getElementById("skill" + skillselector[skillselector.value - 1].value) == null) {
+                totalSkills++;
+                containerSkills.innerHTML += '<div id="skill' + skillselector[skillselector.value - 1].value + '" onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block">' +
+                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + '<i class="far fa-edit"></i>' +
+                    '</a><input name="myskills[]" type="hidden" value="' + skillselector[skillselector.value - 1].value + '"></input></div>';
+
+                curSkills.innerHTML += '<div class="skill' + skillselector[skillselector.value - 1].value + ' mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">' +
+                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML +
+                    '</a></div>';
+            }
+        }
+    }
+
+    function deleteSkill(element) {
+        console.log(element);
+        totalSkills--;
+
+        var elemid = element.id;
+        var elem = document.getElementsByClassName(elemid)[0];
+
+        console.log(elemid)
+        console.log(elem);
+        element.parentNode.removeChild(element);
+        elem.parentNode.removeChild(elem);
+    }
 
     function updateName() {
         curname.innerHTML = "";
@@ -395,7 +467,7 @@
     }
 
     function saveWorker() {
-        if ((totalExps != 0) && (totalForms != 0)  && (!isNaN(formage.value)) && (formprovince.value != "" && formprovince.value != null)) {
+        if ((totalExps != 0) && (totalForms != 0) && (!isNaN(formage.value)) && (formprovince.value != "" && formprovince.value != null)) {
             console.log(form);
             form.submit();
         }
