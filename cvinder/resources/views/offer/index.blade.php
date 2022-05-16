@@ -181,26 +181,22 @@
             let hijosDivWorker = mostrado[0];
             let workerid = hijosDivWorker.id;
 
-            // var request = $.ajax({
-            //     url: "/offer/save",
-            //     method: "POST",
-            //     data: {
-            //         "workerid": workerid,
-            //         "offerid": offerid
-            //     },
-            //     dataType: 'json'
-            // });
             $.ajax({
-            url: "/offer/save",
-            type: "POST",
-            data:{
-                "workerid": workerid,
-                "offerid": offerid
-            },
-            success: function(data){
-                console.log("todo bien");
-            }
-        });
+                url: 'offer/save',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "workerid": workerid,
+                    "offerid": offerid
+                },
+                type: "post",
+                cache: false,
+                success: function(savingStatus) {
+                    console.log(savingStatus);
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    console.log(xhr);
+                }
+            });
 
         }
 

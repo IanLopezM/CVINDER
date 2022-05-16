@@ -11,6 +11,7 @@ use App\Models\OfferSkill;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
+use App\Models\OfferWorker;
 use Illuminate\Http\Request;
 use App\Models\Worker;
 
@@ -194,7 +195,30 @@ class OfferController extends Controller
         //
     }
 
-    public function save($request){
-        dd($request);
+    public function save(Request $request)
+    {
+        //de empresa a trabajador
+        $existoffer = DB::select("select * from offer_workers where worker_id = " . $request["workerid"] . " & offer_id = " . $request["offerid"]);
+        return $existoffer;
+        if (count($existoffer) > 0) {
+            $thisoffer = OfferWorker::find($existoffer[0]->id)->delete();
+            if ($thisoffer->worker_ok == false) {
+                $newoffer = new Offer();
+                $newoffer->offer_id = $request["offerid"];
+                $newoffer->offer_ok = true;
+                $newoffer->worker_id = $request["workerid"];
+                $newoffer->worker_ok = true;
+                $newoffer->save();
+            }
+        } else {
+            $newoffer = new OfferWorker();
+            $newoffer->offer_id = $request["offerid"];
+            $newoffer->offer_ok = true;
+            $newoffer->worker_id = $request["workerid"];
+            $newoffer->worker_ok = false;
+            $newoffer->save();
+        }
+
+        return $request;
     }
 }
