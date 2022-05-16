@@ -4,12 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>CVINDER</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link href=" https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         .gradient {
             background: linear-gradient(90deg, rgba(51, 213, 162, 1) 0%, rgba(81, 134, 218, 1) 100%);
@@ -110,29 +112,31 @@
         <div class="text-gray-800 float-left w-full flex justify-center gradient" style="height: 95vh">
             <div id="nolike" ondrop="drop(event)" ondragover="allowDrop(event)" class="dropzone text-gray-800 float-left w-1/6 flex justify-center" style="height: 95vh;">
             </div>
-            <div class="text-gray-800 float-left w-4/6 flex justify-center" style="height: 95vh;">
-                <div id="curr" draggable="true" class="w-3/5  bg-white rounded-md mt-6 block" ondragstart="drag(event)" style="height: 95%;">
-                    @if(count($allworkers) != 0)
-                    <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="curname">{{$allworkers[0]->name}} {{$allworkers[0]->surname}}</h1>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curubi">{{$allprovinces[$allworkers[0]->province_id -1]->name}}</h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curaddress">{{$allworkers[0]->address}}</h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curage">{{$allworkers[0]->age}} </h4>
+            <div class="text-gray-800 float-left w-4/6 flex justify-center" id="container-curs" style="height: 95vh;">
+                @foreach($allworkers as $worker)
+                <div id="{{$worker->id}}" draggable="true" class="w-3/5  bg-white rounded-md mt-6 block hidden" ondragstart="drag(event)" style="height: 95%;">
+
+                    <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="curname">{{$worker->name}} {{$worker->surname}}</h1>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curubi">{{$allprovinces[$worker->province_id -1]->name}}</h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curaddress">{{$worker->address}}</h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curage">{{$worker->age}} </h4>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms">
                         @foreach($allworkers[0]->academics as $formatio)
                         <p>Ubi {{$formatio->location}} titulo {{$formatio->title}} start {{$formatio->yearStart}} end {{$formatio->yearEnd}}</p><br>
                         @endforeach
                     </h4>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms">
-                        @foreach($allworkers[0]->experiences as $formatio)
+                        @foreach($worker->experiences as $formatio)
                         <p>Ubi {{$formatio->location}} titulo {{$formatio->charge}} start {{$formatio->yearStart}} end {{$formatio->yearEnd}}</p><br>
                         @endforeach
                     </h4>
-                    @endif
+
 
                 </div>
+                @endforeach
             </div>
             <div id="yeslike" ondrop="drop(event)" ondragover="allowDrop(event)" class="dropzone text-gray-800 float-left w-1/6 flex justify-center" style="height: 95vh;">
-            </div> 
+            </div>
         </div>
     </div>
 </body>
@@ -140,10 +144,23 @@
     var curr = document.getElementById("curr");
     var nolike = document.getElementById("nolike");
     var yeslike = document.getElementById("yeslike");
+    var containerCurs = document.getElementById("container-curs");
+    var currs = containerCurs.children;
+    var pos = 0;
+    var offerid;
+    // containerCurs[0].firstChild.classList.remove("hidden");
+    // containerCurs.firstChild.classList.add("isShow");
+
 
     document.addEventListener('DOMContentLoaded', function(event) {
         var allworkers = @json($allworkers);
-        console.log(allworkers);
+        offerid = @json($offer["id"]);
+        console.log(offerid);
+        currs[pos].classList.add("isShow");
+        currs[pos].classList.remove("hidden");
+        console.log(currs[0]);
+
+        // console.log(allworkers);
     });
 
     function allowDrop(ev) {
@@ -151,11 +168,51 @@
     }
 
     function drag(ev) {
-        // console.log(ev.target.id);
+        console.log(ev.target.id);
+
     }
 
     function drop(ev) {
+
         console.log("dropped on" + ev.target.id);
+        let mostrado = document.getElementsByClassName("isShow");
+
+        if (ev.target.id == "yeslike") {
+            let hijosDivWorker = mostrado[0];
+            let workerid = hijosDivWorker.id;
+
+            // var request = $.ajax({
+            //     url: "/offer/save",
+            //     method: "POST",
+            //     data: {
+            //         "workerid": workerid,
+            //         "offerid": offerid
+            //     },
+            //     dataType: 'json'
+            // });
+            $.ajax({
+            url: "/offer/save",
+            type: "POST",
+            data:{
+                "workerid": workerid,
+                "offerid": offerid
+            },
+            success: function(data){
+                console.log("todo bien");
+            }
+        });
+
+        }
+
+        currs[pos].classList.remove("isShow");
+        currs[pos].classList.add("hidden");
+        if (currs[pos + 1] != null) {
+            pos++;
+            currs[pos].classList.add("isShow");
+            currs[pos].classList.remove("hidden");
+        }
+
+
     }
 </script>
 

@@ -11,6 +11,7 @@ use App\Models\OfferSkill;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
+use Illuminate\Http\Request;
 use App\Models\Worker;
 
 class OfferController extends Controller
@@ -191,5 +192,9 @@ class OfferController extends Controller
     public function destroy(Offer $offer)
     {
         //
+    }
+
+    public function save($request){
+        dd($request);
     }
 }
