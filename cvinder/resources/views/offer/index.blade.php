@@ -105,17 +105,34 @@
 
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
     <div>
-            <div class="text-gray-800 float-left w-full flex justify-center gradient" style="height: 5vh;">
+        <div class="text-gray-800 float-left w-full flex justify-center gradient" style="height: 5vh;">
+        </div>
+        <div class="text-gray-800 float-left w-full flex justify-center gradient" style="height: 95%;">
+            <div id="nolike" ondrop="drop(event)" ondragover="allowDrop(event)" class="dropzone text-gray-800 float-left w-1/6 flex justify-center" style="height: 95vh;">
             </div>
-            <div class="text-gray-800 float-left w-full flex justify-center gradient" style="height: 95%;">
-                <div id="nolike"  class="dropzone text-gray-800 float-left w-1/6 flex justify-center" style="height: 95vh;">
+            <div class="text-gray-800 float-left w-4/6 flex justify-center" style="height: 95vh;">
+                <div id="curr" draggable="true" class="w-3/5  bg-white rounded-md mt-6 block" ondragstart="drag(event)" style="height: 95%;">
+                @if(count($allworkers) != 0)
+                    <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="curname">{{$allworkers[0]->name}} {{$allworkers[0]->surname}}</h1>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curubi">{{$allprovinces[$allworkers[0]->province_id -1]->name}}</h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curaddress">{{$allworkers[0]->address}}</h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curage">{{$allworkers[0]->age}} </h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms">
+                        @foreach($allworkers[0]->academics as $formatio)
+                            <p>Ubi {{$formatio->location}} titulo {{$formatio->title}} start {{$formatio->yearStart}} end {{$formatio->yearEnd}}</p><br>
+                        @endforeach
+                    </h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms">
+                        @foreach($allworkers[0]->experiences as $formatio)
+                            <p>Ubi {{$formatio->location}} titulo {{$formatio->charge}} start {{$formatio->yearStart}} end {{$formatio->yearEnd}}</p><br>
+                        @endforeach
+                    </h4>
                 </div>
-                <div class="text-gray-800 float-left w-4/6 flex justify-center" style="height: 95vh;">
-                    <div id="curr" draggable="true" class="w-3/5  bg-white rounded-md mt-6 block" style="height: 95%;"></div>
-                </div>
-                <div id="yeslike" class="dropzone text-gray-800 float-left w-1/6 flex justify-center" style="height: 95vh;">
-                </div>
+                @endif
             </div>
+            <div id="yeslike" ondrop="drop(event)" ondragover="allowDrop(event)" class="dropzone text-gray-800 float-left w-1/6 flex justify-center" style="height: 95vh;">
+            </div>
+        </div>
     </div>
 </body>
 <script>
@@ -124,23 +141,21 @@
     var yeslike = document.getElementById("yeslike");
 
     document.addEventListener('DOMContentLoaded', function(event) {
-        document.addEventListener("dragstart", showDrag);
-        document.addEventListener("dragend", showEnd);
-        document.addEventListener("dragover", showOver);
+        var allworkers = @json($allworkers);
+        console.log(allworkers);
     });
 
-    function showDrag() {
-        console.log("hola");
+    function allowDrop(ev) {
+        ev.preventDefault();
     }
 
-    function showOver(event) {
-        console.log("over");
+    function drag(ev) {
+        console.log(ev.target.id);
     }
 
-    function showEnd(event) {
-        console.log("adios");
+    function drop(ev) {
+        console.log(ev.target.id);
     }
-
 </script>
 
 </html>

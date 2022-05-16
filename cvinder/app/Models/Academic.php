@@ -9,12 +9,6 @@ class Academic extends Model
 {
     use HasFactory;
 
-    //para dar formato a la migracion
-    protected $casts = [
-        'yearStart' => 'datetime:mm/yy',
-        'yearEnd' => 'datetime:mm/yy',
-    ];
-
     public function worker(){
         return $this->belongsTo(Worker::class);
     }

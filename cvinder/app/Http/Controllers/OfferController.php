@@ -11,6 +11,7 @@ use App\Models\OfferSkill;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
+use App\Models\Worker;
 
 class OfferController extends Controller
 {
@@ -19,9 +20,15 @@ class OfferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(StoreOfferRequest $offer)
     {
-        return view('offer.index');
+        $thisoffer = Offer::find($offer["offer"]);
+        $enterprise = $thisoffer["enterprise_id"];
+        $thisenterprise = Enterprise::find($enterprise);
+        $allworkers = Worker::all();
+        $allprovinces = Province::all();
+        return view('offer.index')
+            ->with(['enterprise' => $thisenterprise, 'offer' => $thisoffer, 'allworkers' => $allworkers, 'allprovinces' => $allprovinces]);
     }
 
     /**
