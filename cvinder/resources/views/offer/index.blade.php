@@ -121,16 +121,23 @@
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curaddress">{{$worker->address}}</h4>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curage">{{$worker->age}} </h4>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms">
-                        @foreach($allworkers[0]->academics as $formatio)
-                        <p>Ubi {{$formatio->location}} titulo {{$formatio->title}} start {{$formatio->yearStart}} end {{$formatio->yearEnd}}</p><br>
+                        @foreach($worker->academics as $academic)
+                        <p>Ubi {{$academic->location}} titulo {{$academic->title}} start {{$academic->yearStart}} end {{$academic->yearEnd}}</p><br>
                         @endforeach
                     </h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms">
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curexps">
                         @foreach($worker->experiences as $formatio)
                         <p>Ubi {{$formatio->location}} titulo {{$formatio->charge}} start {{$formatio->yearStart}} end {{$formatio->yearEnd}}</p><br>
                         @endforeach
                     </h4>
-
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curskills">
+                        Skills:
+                        @foreach ($worker->skillWorkers as $myskill)
+                        <div class="skill{{$skills[$myskill->skill_id-1]->id}} mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">
+                            <a href="#" class="bgtransp">{{$skills[$myskill->skill_id - 1]->name}}</a>
+                        </div>
+                        @endforeach
+                    </h4>
 
                 </div>
                 @endforeach

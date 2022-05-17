@@ -29,8 +29,9 @@ class OfferController extends Controller
         $thisenterprise = Enterprise::find($enterprise);
         $allworkers = Worker::all();
         $allprovinces = Province::all();
+        $allskills = Skill::all();
         return view('offer.index')
-            ->with(['enterprise' => $thisenterprise, 'offer' => $thisoffer, 'allworkers' => $allworkers, 'allprovinces' => $allprovinces]);
+            ->with(['enterprise' => $thisenterprise, 'offer' => $thisoffer, 'allworkers' => $allworkers, 'allprovinces' => $allprovinces, 'skills' => $allskills]);
     }
 
     /**
