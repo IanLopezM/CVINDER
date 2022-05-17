@@ -101,59 +101,38 @@
 </head>
 
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
-    <div>
-        <div class="float-left w-1/6 shadow-md bg-white overflow-auto" style="height: 100vh">
-            <ul class="relative">
-                <li class="relative gradient">
-                    <a class="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl text-gray-800" href="#">
-                        <!--http://www.potlabicons.com/ -->
-                        <svg class="inline" viewBox="0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none">
-                            <style>
-                                @keyframes check {
-                                    to {
-                                        stroke-dashoffset: 0;
-                                    }
-                                }
-                            </style>
-                            <rect width="10" height="14" x="7" y="5" stroke="#0A0A30" stroke-width="1.5" rx="1" />
-                            <path stroke="#265BFF" stroke-linecap="round" stroke-width="1.5" d="M10 8.973h4m-4 3.64h2" style="animation:check 3s infinite cubic-bezier(.99,-.1,.01,1.02)" stroke-dashoffset="100" stroke-dasharray="100" />
-                        </svg>
-                        CVINDER
-                    </a>
-                </li>
-                <li class="relative px-2 font-bold text-xl lg:text-2xl text-gray-800 mr-2 ml-4 mb-2 mt-2">
-                    <h5 class="leading-tight text-3xl mb-2">Matches</h5>
-                </li>
-                <hr>
-                <!-- foreach -->
-                <li class="relative px-2 font-bold text-xl lg:text-3xl text-gray-800 mr-2 ml-4 mb-2 mt-2">
-                    <h5 class="leading-tight text-xl mb-2">Ian López Molina</h5>
-                    <div>
-                        <i class="ml-3 fa-regular fa-circle-xmark float-left"></i><i class="mr-3 fa-regular fa-message float-right"></i>
-                    </div>
-                    <br>
-                </li>
-                <hr>
-                <!-- end foreach -->
-                <li class="relative px-2 font-bold text-xl lg:text-2xl text-gray-800 mr-2 ml-4 mb-2 mt-2">
-                    <h5 class="leading-tight text-3xl mb-2">Tus likes</h5>
-                </li>
-                <hr>
-                <!-- foreach -->
-                <li class="relative px-2 font-bold text-xl lg:text-3xl text-gray-800 mr-2 ml-4 mb-2 mt-2">
-                    <h5 class="leading-tight text-xl mb-2">Alba Fernandez de Soria Sandoval</h5>
-                    <div>
-                        <i class="ml-3 fa-regular fa-circle-xmark float-left"></i>
-                    </div>
-                    <br>
-                </li>
-                <hr>
-                <!-- end foreach -->
-            </ul>
+    <div style="height: 100vh">
+        <div class="text-gray-800 float-left w-full flex justify-center gradient" style="height: 5vh;">
         </div>
-        <div class="text-gray-800 float-right w-5/6 bg-gray-100 overflow-auto" style="height: 100vh;">
+        <div class="text-gray-800 float-right w-full flex justify-center gradient" style="height: 95vh" >
+            <div class="w-full justify-center rounded-md mt-6 block" style="height: 95%;" id="matchescontainer">
+            </div>
+
         </div>
     </div>
 </body>
+<script>
+    var allworkers = @json($allworkers);
+    var allmatches = @json($matches);
+    var matchescontainer = document.getElementById("matchescontainer");
+
+    document.addEventListener('DOMContentLoaded', function(event) {
+        fillMatches();
+    });
+
+    function fillMatches() {
+        for (var i = 0; i < allmatches.length; i++) {
+            for (var j = 0; j < allworkers.length; j++) {
+                if (allworkers[j].id == allmatches[i].worker_id) {
+                    matchescontainer.innerHTML += '<div class="hover:underline font-bold rounded-full py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block m-4" style="height: 25%;"><div>' +
+                        '<h2 class="text-gray-800 text-3xl font-semibold ml-6 mt-6 mr-12">' + allworkers[j].name + '</h2>' +
+                        '<p class="mt-2 text-gray-600 ml-6 mr-12">' + allworkers[j].surname + '</p>' +
+                        '<p class="mt-2 text-gray-600 ml-6 mt-12 mr-12">' + allworkers[j].mail + '</p>' +
+                        '</div> </div>';
+                }
+            }
+        }
+    }
+</script>
 
 </html>

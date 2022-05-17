@@ -55,9 +55,24 @@ class OfferController extends Controller
             ->with(['enterprise' => $enterprise, 'sectors' => $sectors, 'skills' => $skills]);
     }
 
-    public function matches()
+    public function matches(StoreOfferRequest $offer)
     {
-        return view('offer.matches');
+        $thisoffer = Offer::find($offer["offer"]);
+        $allworkers = Worker::all();
+
+        $arraymatches = [];
+
+        foreach ($thisoffer->matches as $match) {
+            if($match->offer_ok == 1 && $match->worker_ok == 1) {
+                array_push($arraymatches, $match);
+            }
+        }
+        
+        $enterprise = $thisoffer["enterprise_id"];
+        $thisenterprise = Enterprise::find($enterprise);
+
+        return view('offer.matches')
+            ->with(['thisoffer' => $thisoffer, 'thisenterprise' => $thisenterprise, 'allworkers' => $allworkers, 'matches' => $arraymatches]);
     }
 
     public function profile(StoreOfferRequest $offer)

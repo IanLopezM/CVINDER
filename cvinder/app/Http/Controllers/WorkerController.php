@@ -224,6 +224,15 @@ class WorkerController extends Controller
             $thisExperience->save();
         }
 
+        $skillworkerskillstodelete = SkillWorker::where("worker_id", "=", $request["workerid"])->delete();
+
+        foreach ($request["myskills"] as $key => $skillnow) {
+            $thisskill = new SkillWorker();
+            $thisskill->skill_id = $skillnow;
+            $thisskill->worker_id = $request["workerid"];
+            $thisskill->save();
+        }
+
         $worker = Worker::find($request["workerid"]);
         $province = Province::find($request["province"]);
         $provinces = Province::all();

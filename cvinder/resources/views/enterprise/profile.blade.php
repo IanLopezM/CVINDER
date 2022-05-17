@@ -160,7 +160,8 @@
                             <div id="navAction" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800">
                                 {{$offer->title}} 
                                 <a href="{{route('offer.profile', ['offer'=>$offer])}}" class="bgtransp"><i class='far fa-edit'></i></a>
-                                <a href="{{route('offer.index', ['offer'=>$offer])}}" class="bgtransp"><i class="fa-solid fa-heart"></i></a>
+                                <a href="{{route('offer.index', ['offer'=>$offer])}}" class="bgtransp"><i class="fa fa-eye"></i></a>
+                                <a href="{{route('offer.matches', ['offer'=>$offer])}}" class="bgtransp"><i class="fa fa-heart"></i></a>
                             </div>
                         </div>
                         @endforeach
