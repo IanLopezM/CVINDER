@@ -41,7 +41,7 @@ Route::get("/worker/form", [WorkerController::class, "form"])->name("worker.form
 Route::post("/worker/check", [WorkerController::class, "check"])->name("worker.check");                     //**************** done(functioning)    ENDED?
 Route::post("/worker/store", [WorkerController::class, "store"])->name("worker.store");                     //**************** done(functioning)    ENDED?
 Route::post("/worker/edit", [WorkerController::class, "edit"])->name("worker.edit");                        //**************** done(functioning)    ENDED?
-Route::post("/worker/save", [WorkerController::class, "save"])->name("worker.save");                        //**************** done()
+Route::post("/worker/save", [WorkerController::class, "save"])->name("worker.save");                        //**************** done(functioning)    ENDED?
 
 Route::get("/enterprise/profile", [EnterpriseController::class, "profile"])->name("enterprise.profile");    //done(interficie) done(functioning)    ENDED?
 Route::get("/enterprise/form", [EnterpriseController::class, "form"])->name("enterprise.form");             //done(interficie) done(functioning)    ENDED?
@@ -52,7 +52,7 @@ Route::post("/enterprise/profile", [OfferController::class, "store"])->name("off
 
 Route::get("/offer", [OfferController::class, "index"])->name("offer.index");                               //half(interficie) done(functioning)    NOTENDED!
 Route::get("/offer/profile", [OfferController::class, "profile"])->name("offer.profile");                   //done(interficie) done(functioning)    ENDED?
-Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //TODO
+Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //half(interficie) 
 Route::get("/offer/form", [OfferController::class, "form"])->name("offer.form");                            //done(interficie) done(functioning)    ENDED?
 Route::post("/offer/edit", [OfferController::class, "edit"])->name("offer.edit");                           //**************** done(functioning)    ENDED?
 Route::post("/offer/save", [OfferController::class, "save"])->name("offer.save");                           //**************** done(functioning)    ENDED?

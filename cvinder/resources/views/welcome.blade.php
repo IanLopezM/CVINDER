@@ -315,8 +315,8 @@
           <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
             <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">0.00 <span class="text-base">/ por usuario</span></div>
             <div class="flex items-center justify-center">
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Empresa</button>
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Trabajador</button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg" ><a href="{{url('enterprise/form')}}">Crear Cuenta Empresa</a></button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg"><a href="{{url('worker/form')}}">Crear Cuenta Trabajador</a></button>
             </div>
           </div>
         </div>
@@ -334,8 +334,8 @@
           <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
             <div class="w-full pt-6 text-4xl font-bold text-center">9.99 <span class="text-base">/ por usuario</span></div>
             <div class="flex items-center justify-center">
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Empresa</button>
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Trabajador</button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg"><a href="{{url('enterprise/form')}}">Crear Cuenta Empresa</a></button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg"><a href="{{url('worker/form')}}">Crear Cuenta Trabajador</a></button>
             </div>
           </div>
         </div>
@@ -353,8 +353,8 @@
           <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
             <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">29.99 <span class="text-base">/ por usuario</span></div>
             <div class="flex items-center justify-center">
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Empresa</button>
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear Cuenta Trabajador</button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg"><a href="{{url('enterprise/form')}}">Crear Cuenta Empresa</a></button>
+              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg"><a href="{{url('worker/form')}}">Crear Cuenta Trabajador</a></button>
             </div>
           </div>
         </div>
@@ -368,8 +368,8 @@
       <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
     </div>
     <h3 class="my-4 text-3xl leading-tight">¡No te lo pienses dos veces!</h3>
-    <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear cuenta Empresa</button>
-    <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg">Crear cuenta Trabajador</button>
+    <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg"><a href="{{url('enterprise/form')}}">Crear Cuenta Empresa</a></button>
+    <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg"><a href="{{url('worker/form')}}">Crear Cuenta Trabajador</a></button>
   </section>
 
   <script>
