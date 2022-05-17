@@ -178,4 +178,12 @@ class EnterpriseController extends Controller
     {
         //
     }
+
+    public function return (StoreEnterpriseRequest $request) {
+        $enterprise = Enterprise::find($request["enterprise"]);
+        $province = Province::find($enterprise->province_id);
+        $provinces = Province::all();
+        return view('enterprise.profile')
+            ->with(['enterprise' => $enterprise, 'provinces' => $provinces, 'prov' => $province]);
+    }
 }

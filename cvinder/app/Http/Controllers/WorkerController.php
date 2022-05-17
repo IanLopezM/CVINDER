@@ -48,9 +48,18 @@ class WorkerController extends Controller
         //
     }
 
-    public function profile()
+    public function profile(StoreWorkerRequest $request)
     {
-        return view('worker.profile');
+        $worker = Worker::find($request["worker"]);
+        $province = Province::find($worker->province_id);
+        $provinces = Province::all();
+        $skills = Skill::all();
+        $experiences = DB::select("select * from experiences where worker_id = " . $worker->id);
+        $formations = DB::select("select * from academics where worker_id = " . $worker->id);
+        $myskills = DB::select("select * from skill_workers where worker_id = " . $worker->id);
+
+        return view('worker.profile')
+        ->with(['worker' => $worker, 'provinces' => $provinces, 'prov' => $province, 'experiences' => $experiences, 'formations' => $formations, 'skills' => $skills, 'myskills' => $myskills]);
     }
 
     public function form()

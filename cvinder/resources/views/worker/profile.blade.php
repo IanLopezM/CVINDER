@@ -113,7 +113,7 @@
             <div class="float-left w-1/5 shadow-md bg-white overflow-auto" style="height: 100vh">
                 <ul class="relative">
                     <li class="relative gradient">
-                        <a class="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl text-gray-800" href="#">
+                        <a class="toggleColour no-underline hover:no-underline font-bold text-2xl lg:text-4xl text-gray-800" href="{{route('welcome')}}">
                             <!--http://www.potlabicons.com/ -->
                             <svg class="inline" viewBox="0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none">
                                 <style>

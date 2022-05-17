@@ -108,13 +108,22 @@
 <body class="leading-normal tracking-normal text-white" style="font-family: 'Source Sans Pro', sans-serif; height: 100vh" cz-shortcut-listen="true">
     <div>
         <div class="text-gray-800 float-left w-full flex justify-center gradient" style="height: 5vh;">
+            <div class="float-left w-1/6 flex justify-end" style="height: 5vh;">
+                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold">DISLIKE <i class="fa-solid fa-thumbs-down"></i></h4>
+            </div>
+            <div class="float-left w-4/6 flex justify-center" style="height: 5vh;">
+            <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold"><a href="{{route('worker.profile', ['worker'=>$thisworker])}}">Vuelve a tu perfil</a></h4>
+            </div>
+            <div class="float-left w-1/6 flex justify-start" style="height: 5vh;">
+            <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold">LIKE <i class="fa-solid fa-thumbs-up"></i></h4>
+            </div>
         </div>
         <div class="text-gray-800 float-left w-full flex justify-center gradient" style="height: 95vh">
             <div id="nolike" ondrop="drop(event)" ondragover="allowDrop(event)" class="dropzone text-gray-800 float-left w-1/6 flex justify-center" style="height: 95vh;">
             </div>
             <div class="text-gray-800 float-left w-4/6 flex justify-center" id="container-curs" style="height: 95vh;">
                 @foreach($alloffers as $offer)
-                <div id="{{$offer->id}}" draggable="true" class="w-3/5  bg-white rounded-md mt-6 block hidden" ondragstart="drag(event)" style="height: 95%;">
+                <div id="{{$offer->id}}" draggable="true" class="w-3/5 bg-white rounded-md mt-6 block hidden" ondragstart="drag(event)" style="height: 95%;">
                     <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="title">{{$offer->title}}</h1>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold" id="cursector">{{$allsectors[$offer->sector_id]->name}}</h4>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curskills">
