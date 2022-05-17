@@ -12,6 +12,7 @@ use App\Models\Sector;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreWorkerRequest;
 use App\Http\Requests\UpdateWorkerRequest;
+use App\Models\Enterprise;
 use App\Models\SkillWorker;
 use App\Models\OfferWorker;
 use Illuminate\Http\Request;
@@ -61,9 +62,23 @@ class WorkerController extends Controller
             ->with(['provinces' => $provinces, 'skills' => $skills]);
     }
 
-    public function matches()
+    public function matches(StoreWorkerRequest $worker)
     {
-        return view('worker.matches');
+        $thisworker = Worker::find($worker["worker"]);
+        $alloffers = Offer::all();
+        $allenterprises = Enterprise::all();
+
+        $arraymatches = [];
+
+        foreach ($thisworker->matches as $match) {
+            if($match->offer_ok == 1 && $match->worker_ok == 1) {
+                array_push($arraymatches, $match);
+            }
+        }
+
+
+        return view('worker.matches')
+            ->with(['thisworker' => $thisworker, 'alloffers' => $alloffers, 'allenterprises' => $allenterprises, 'matches' => $arraymatches]);
     }
 
     /**
