@@ -199,16 +199,17 @@ class OfferController extends Controller
     public function save(Request $request)
     {
         //de empresa a trabajador
-        $existoffer = DB::select("select * from offer_workers where worker_id = " . $request["workerid"] . " & offer_id = " . $request["offerid"]);
+        $existoffer = DB::select("select * from offer_workers where worker_id = " . $request["workerid"] . " && offer_id = " . $request["offerid"]);
         if (count($existoffer) > 0) {
-            $thisoffer = OfferWorker::find($existoffer[0]->id)->delete();
-            if ($thisoffer->worker_ok == false) {
-                $newoffer = new Offer();
+            $thisoffer = OfferWorker::find($existoffer[0]->id);
+            if ($thisoffer->worker_ok == 1) {
+                $newoffer = new OfferWorker();
                 $newoffer->offer_id = $request["offerid"];
                 $newoffer->offer_ok = true;
                 $newoffer->worker_id = $request["workerid"];
                 $newoffer->worker_ok = true;
                 $newoffer->save();
+                $thisoffer->delete();
             }
         } else {
             $newoffer = new OfferWorker();

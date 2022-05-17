@@ -7,10 +7,14 @@ use App\Models\Province;
 use App\Models\Academic;
 use App\Models\Experience;
 use App\Models\Skill;
+use App\Models\Offer;
+use App\Models\Sector;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreWorkerRequest;
 use App\Http\Requests\UpdateWorkerRequest;
 use App\Models\SkillWorker;
+use App\Models\OfferWorker;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class WorkerController extends Controller
@@ -20,9 +24,17 @@ class WorkerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(StoreWorkerRequest $worker)
     {
-        return view('worker.index');
+        $thisworker = Worker::find($worker["worker"]);
+
+
+        $alloffers = Offer::all();
+        $allsectors = Sector::all();
+        $allskills = Skill::all();
+
+        return view('worker.index')
+            ->with(['alloffers' => $alloffers, 'allsectors' => $allsectors, 'allskills' => $allskills, 'thisworker' => $thisworker]);
     }
 
     /**
@@ -236,6 +248,33 @@ class WorkerController extends Controller
     public function update(UpdateWorkerRequest $request, Worker $worker)
     {
         //
+    }
+
+    public function save(Request $request)
+    {
+        $existoffer = DB::select("select * from offer_workers where worker_id = " . $request["workerid"] . " && offer_id = " . $request["offerid"]);
+
+        if (count($existoffer) > 0) {
+            $thisoffer = OfferWorker::find($existoffer[0]->id);
+            if ($thisoffer->offer_ok == 1) {
+                $newoffer = new OfferWorker();
+                $newoffer->offer_id = $request["offerid"];
+                $newoffer->offer_ok = true;
+                $newoffer->worker_id = $request["workerid"];
+                $newoffer->worker_ok = true;
+                $newoffer->save();
+                $thisoffer->delete();
+            }
+        } else {
+            $newoffer = new OfferWorker();
+            $newoffer->offer_id = $request["offerid"];
+            $newoffer->offer_ok = false;
+            $newoffer->worker_id = $request["workerid"];
+            $newoffer->worker_ok = true;
+            $newoffer->save();
+        }
+
+        return $request;
     }
 
     /**

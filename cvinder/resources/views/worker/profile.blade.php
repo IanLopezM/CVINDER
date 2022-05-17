@@ -130,6 +130,8 @@
                         </a>
                     </li>
                     <br>
+                    <p class="text-gray-800 font-bold text-xl mb-2 px-2"><a href="{{route('worker.index', ['worker'=>$worker])}}" class="bgtransp">Ves a deslizar<i class="fa-solid fa-heart"></i></a></p>
+                    <br>
                     <li class="relative px-2">
                         <p class="text-gray-800 font-bold text-xl mb-2 px-2">Nombre</p>
                         <input type="text" id="user" name="user" placeholder="{{$worker->name}}" value="{{$worker->name}}" maxlength="15">
