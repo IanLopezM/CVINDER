@@ -104,13 +104,13 @@
     <div style="height: 100vh">
         <div class="text-gray-800 float-left w-full flex justify-center gradient" style="height: 5vh;">
             <div class="float-left w-1/6 flex justify-end" style="height: 5vh;">
-                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold">DISLIKE <i class="fa-solid fa-thumbs-down"></i></h4>
+                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold"></h4>
             </div>
             <div class="float-left w-4/6 flex justify-center" style="height: 5vh;">
                 <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold"><a href="{{route('worker.profile', ['worker'=>$thisworker])}}">Vuelve a tu perfil</a></h4>
             </div>
             <div class="float-left w-1/6 flex justify-start" style="height: 5vh;">
-                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold">LIKE <i class="fa-solid fa-thumbs-up"></i></h4>
+                <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-xl font-extrabold"></h4>
             </div>
         </div>
         <div class="text-gray-800 float-right w-full flex justify-center gradient" style="height: 95vh">
