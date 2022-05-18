@@ -220,11 +220,11 @@
                 <div class="w-3/6  bg-white rounded-md mt-6 block" style="height: 95%;">
                     <h1 class="text-black-800 ml-6 mt-12 mr-12 text-5xl font-extrabold" id="curname"></h1>
                     <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curubi"></h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curaddress"></h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curage"></h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curforms"></h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curexps"></h4>
-                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-lg font-extrabold" id="curskills"></h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-2xl font-extrabold" id="curaddress"></h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-2xl font-extrabold" id="curage"></h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-2xl font-extrabold" id="curforms"></h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-2xl font-extrabold" id="curexps"></h4>
+                    <h4 class="text-gray-500 ml-6 mt-2 mr-12 text-2xl font-extrabold" id="curskills"></h4>
 
                 </div>
             </div>
@@ -322,7 +322,7 @@
     function addSkill() {
         if (firstSkill == 0) {
             firstSkill = 1;
-            curSkills.innerHTML = "Skills Necesarias: "
+            curSkills.innerHTML = "Mis skills: "
         }
         console.log(containerSkills.children)
         // console.log(skillselector[skillselector.value-1].value)
@@ -331,7 +331,7 @@
             if (document.getElementById("skill" + skillselector[skillselector.value - 1].value) == null) {
                 totalSkills++;
                 containerSkills.innerHTML += '<div id="skill' + skillselector[skillselector.value - 1].value + '" onclick="deleteSkill(this)" class="mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block">' +
-                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + '<i class="far fa-edit"></i>' +
+                    '<a href="#" class="bgtransp">' + skillselector[skillselector.value - 1].innerHTML + '<i class="fa-solid fa-xmark"></i>' +
                     '</a><input name="myskills[]" type="hidden" value="' + skillselector[skillselector.value - 1].value + '"></input></div>';
 
                 curSkills.innerHTML += '<div class="skill' + skillselector[skillselector.value - 1].value + ' mx-auto lg:mx-0 hover:underline font-bold rounded-full lg:mt-0 py-4 px-8 shadow bg-gray-50 text-gray-800 inline-block ml-2 mr-2 mb-2s">' +
@@ -366,12 +366,12 @@
 
     function updateAddress() {
         curaddress.innerHTML = "";
-        curaddress.append(formaddress.value);
+        curaddress.append("Actualmente viviendo en "+ formaddress.value);
     }
 
     function updateAge() {
         curage.innerHTML = "";
-        curage.append(formage.value);
+        curage.append("Tengo " + formage.value + " años");
     }
 
     function addExp() {
@@ -380,7 +380,7 @@
             '<input type="text" onkeyup="updateExps()" name="expUbi[]" placeholder="Ubicación" maxlength="30">' +
             '<input type="text" onkeyup="updateExps()" name="expCharge[]" placeholder="Titulo" maxlength="30">' +
             '<input type="number" onkeyup="updateExps()" name="expStart[]" placeholder="Año de inicio" maxlength="30">' +
-            '<input type="number" onkeyup="updateExps()" name="expEnd[]" placeholder="Año de final" maxlength="30"><p><a href="#"><i onclick="deleteThisExp(this)" class="far fa-edit"></i></a></p>' +
+            '<input type="number" onkeyup="updateExps()" name="expEnd[]" placeholder="Año de final" maxlength="30"><p><a href="#"><i onclick="deleteThisExp(this)" class="fa-solid fa-xmark"></i></a></p>' +
             '</div>';
     }
 
@@ -398,7 +398,7 @@
             '<input type="text" onkeyup="updateForms()" name="formUbi[]" placeholder="Ubicación" maxlength="30">' +
             '<input type="text" onkeyup="updateForms()" name="formTitle[]" placeholder="Titulo" maxlength="30">' +
             '<input type="number" onkeyup="updateForms()" name="formStart[]" placeholder="Año de inicio" maxlength="30">' +
-            '<input type="number" onkeyup="updateForms()" name="formEnd[]" placeholder="Año de final" maxlength="30"><p><a href="#"><i onclick="deleteThisForm(this)" class="far fa-edit"></i></a></p>' +
+            '<input type="number" onkeyup="updateForms()" name="formEnd[]" placeholder="Año de final" maxlength="30"><p><a href="#"><i onclick="deleteThisForm(this)" class="fa-solid fa-xmark"></i></a></p>' +
             '</div>';
         formdivform.innerHTML += newForm;
 
