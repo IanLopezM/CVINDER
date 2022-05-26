@@ -437,8 +437,9 @@
     }
 
     function saveWorker() {
+        let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if ((totalExps != 0) && (totalForms != 0) && (formname.value != "" && formname.value != null) &&
-            (formlastname.value != "" && formlastname.value != null) && (formmail.value != "" || formmail.value != null) &&
+            (formlastname.value != "" && formlastname.value != null)&& (formmail.value.match(regexEmail)) && (formmail.value != "" || formmail.value != null) &&
             (formpwd.value != "" && formpwd.value != null) && (formaddress.value != "" && formaddress.value != null) &&
             (!isNaN(formage.value)) && (formprovince.value != "" && formprovince.value != null)) {
             console.log(form);

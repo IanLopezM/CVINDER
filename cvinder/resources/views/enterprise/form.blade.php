@@ -229,8 +229,10 @@
     }
 
     function saveEnterprise() {
+        let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
         if ((user.value != null && user.value != "") && (mail.value != null && mail.value != "") &&
-            (desc.value != null && desc.value != "") && (province.value != null && province.value != "") &&
+            (desc.value != null && desc.value != "")&& (mail.value.match(regexEmail))  && (province.value != null && province.value != "") &&
             (pwd.value != null && pwd.value.length > 8)) {
             console.log("ENTRA");
             form.submit();
