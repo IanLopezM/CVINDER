@@ -56,4 +56,4 @@ Route::get("/offer/profile", [OfferController::class, "profile"])->name("offer.p
 Route::get("/offer/matches", [OfferController::class, "matches"])->name("offer.matches");                   //half(interficie) done(functioning)    ENDED!
 Route::get("/offer/form", [OfferController::class, "form"])->name("offer.form");                            //done(interficie) done(functioning)    ENDED!
 Route::post("/offer/edit", [OfferController::class, "edit"])->name("offer.edit");                           //**************** done(functioning)    ENDED!
-Route::post("/offer/save", [OfferController::class, "save"])->name("offer.save");                           //**************** done(functioning)    ENDED!
+Route::post("/offer/save", [OfferController::class, "save"])->name("offer.save");                           //**************** done(functioning)    ENDED?
